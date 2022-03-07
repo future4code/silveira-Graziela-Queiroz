@@ -29,7 +29,6 @@ function retornaArrayOrdenado(array) {
       });
     return arr
 }
-
 let resultado2 = retornaArrayOrdenado([36,12,56,7,3])
 //console.log(resultado2)
 
@@ -40,7 +39,6 @@ function retornaNumerosPares(array) {
     })
     return arr
 }
-
 let novoArray = retornaNumerosPares([1,2,3,4,5,6])
 //console.log(novoArray)
 
@@ -69,19 +67,61 @@ function retornaMaiorNumero(array) {
     return maiorNumero
 }
 let resultado3 = retornaMaiorNumero([1, 5, 3, 7, 5, 2])
-console.log(resultado3)
+//console.log(resultado3)
 
 // EXERCÍCIO 07
 function retornaObjetoEntreDoisNumeros(num1, num2) {
-    let maiorNumero = 0
- 
+    if(num1 > num2){
+        maiorNum = num1
+        menorNum = num2
+    }else{
+        maiorNum = num2
+        menorNum = num1
+    }
 
+    maiorDivMenor = maiorNum % menorNum === 0 
+
+    dif = maiorNum - menorNum
+    
+    return{
+        maiorNumero: maiorNum,
+        maiorDivisivelPorMenor: maiorDivMenor,
+        diferenca: dif
+    }
+     
 }
+let resultado4 = retornaObjetoEntreDoisNumeros(10, 30)
+console.log(resultado4)
+
+    // let menorDivisivelPorMenor = 0
+    // if (num1 > num2){
+    //     maior = num1 ;
+    //     menor = num2
+    // }
+
+    // let objeto = {
+    //     maiorNumero: 
+    //     maiorDivisivelPorMenor:
+    //     diferenca:
+    // }
+
+
 
 // EXERCÍCIO 08
 function retornaNPrimeirosPares(n) {
-   
+    let primeirosNumeros = []
+
+    for(let i = 0; primeirosNumeros.length < n; i++){
+        if(i % 2 === 0){
+            primeirosNumeros.push(i)
+        }
+    }    
+    return primeirosNumeros       
 }
+
+let resultado5 = retornaNPrimeirosPares(5)                              
+console.log(resultado5)
+
 
 // EXERCÍCIO 09
 function classificaTriangulo(ladoA, ladoB, ladoC) {
