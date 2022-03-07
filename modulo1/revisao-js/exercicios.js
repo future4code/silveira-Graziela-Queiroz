@@ -36,7 +36,7 @@ let resultado2 = retornaArrayOrdenado([36,12,56,7,3])
 
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-    const arr =  array.filter((item) => {
+    let arr =  array.filter((item) => {
         return item % 2 === 0
     })
     return arr
