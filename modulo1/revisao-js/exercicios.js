@@ -16,7 +16,13 @@ console.log(resultado)
 // EXERCÍCIO 02
 function retornaArrayInvertido(array) {
   
+
+    return array.reverse()
+
 }
+let resultado1 = retornaArrayInvertido([8, 23, 16, 10])
+console.log(resultado1)
+
 
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
