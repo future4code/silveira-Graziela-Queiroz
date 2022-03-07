@@ -84,5 +84,3 @@ if(GeneroDeFilme === 'fantasia' &&  valor < 15 ){
     console.log("Escolha outro filme :(")  
 }
 
-
-
