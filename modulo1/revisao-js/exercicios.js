@@ -11,28 +11,39 @@ function retornaTamanhoArray(array) {
 }
 
 let resultado = retornaTamanhoArray([3,2,1,4,7]) 
-console.log(resultado)
+// console.log(resultado)
 
-// EXERCÍCIO 02
+
+// // EXERCÍCIO 02
 function retornaArrayInvertido(array) {
-  
-
     return array.reverse()
-
 }
 let resultado1 = retornaArrayInvertido([8, 23, 16, 10])
-console.log(resultado1)
+// console.log(resultado1)
 
 
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
-  
+    let arr = array.sort(function(a, b) {
+        return a - b;
+      });
+    return arr
 }
+
+let resultado2 = retornaArrayOrdenado([36,12,56,7,3])
+//console.log(resultado2)
+
 
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-  
+    const arr =  array.filter((item) => {
+        return item % 2 === 0
+    })
+    return arr
 }
+
+let novoArray = retornaNumerosPares([1,2,3,4,5,6])
+console.log(novoArray)
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
