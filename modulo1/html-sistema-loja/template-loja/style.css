@@ -1,0 +1,85 @@
+#titulo{
+    font-family: sans-serif;
+    font-size: 50px;
+    color: blueviolet;
+}
+
+#descricao{
+    color: red;
+    font-size: 30px;
+    font-family: fantasy;
+}
+
+#links{
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+#img{
+    color:blue;
+    font-size: 40px;
+    font-family:sans-serif
+}
+
+#funcionarios{
+    color:blue;
+    font-size: 20px;
+    font-family:sans-serif
+
+}
+#titulo{
+    color:orangered;
+    font-size: 15px;
+    font-family:fantasy
+
+}
+#controle-de-estoque{
+    color:greenyellow;
+    font-size: 20px;
+    font-family:sans-serif;
+    background-color: black;
+    width: 200px;
+}
+#foto{
+    background-color: blueviolet;
+    font-size: 20px;
+    width: 100px;
+
+}
+#descricao{
+    background-color:aqua;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 200px;
+}
+#preco{
+    font-size: 20px;
+    color:greenyellow;
+    background-color:black;
+    width: 200px;
+}
+#quantidade-disponivel{
+    color:red;
+    font-size: 20px;
+    font-family:Arial, Helvetica, sans-serif;
+    background-color: blue;
+}
+#siga-nos-nas-redes-sociais{
+    font-size: 15px;
+    color:greenyellow;
+    background-color:black;font-size: 20px;
+    width: 200px;
+}
+#itens{
+    background-color:aqua;
+    font-size: 20px;
+}
+#qntd{
+    color:red;
+    font-size: 20px;
+    font-family:Arial, Helvetica, sans-serif;
+    background-color: pink;
+    width: 200px;
+    align-items: center;
+
+}
