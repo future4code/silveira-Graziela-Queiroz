@@ -70,6 +70,8 @@ div img {
     background-color: #2274a5;
     color: white;
     padding-top: 100px;
+    display:flex;
+    flex-direction: column;
 }
 
 #container-de-descricao>ol {
@@ -87,6 +89,11 @@ div img {
     font-size: 60px;
 }
 
+#frase{
+    width: 180px;
+    margin-left: 970px;
+    margin-right: 970px;
+}
 
 /**
   *
