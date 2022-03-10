@@ -123,6 +123,12 @@ td button {
     height: 100px;
 }
 
+.container-produtos{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
 
 #back-button {
     background-color: white;
