@@ -93,7 +93,7 @@ div img {
 
 #frase{
     width: 180px;
-    margin-left: 970px;
+    margin-left: 860px;
     margin-right: 970px;
 }
 
@@ -118,6 +118,15 @@ td button {
     height: 30px;
     border-radius: 5px;
     color: black;
+    
+}
+
+button:active{
+    background-color: white;
+}
+
+button:hover{
+    background-color:#ffd61e;
 }
 
 .container-do-search {
