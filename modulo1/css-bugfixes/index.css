@@ -73,6 +73,7 @@ div>p:first-child {
     display:flex;
     flex-direction: column;
     height: 385px;
+    align-items: center;
 }
 
 #container-de-descricao>ol {
@@ -92,7 +93,6 @@ div>p:first-child {
 
 #frase{
     width: 210px;
-    margin-left: 847px;
 }
 
 /**
@@ -117,13 +117,18 @@ table {
     width: 60%;
 }
 
+#div-botao{
+    display: flex;
+    justify-content: center;
+    padding: 100px;
+}
+
 td button {
     background-color: #fadf63;
     width: 150px;
     height: 30px;
     border-radius: 5px;
     color: black;
-    
 }
 
 button:active{
