@@ -8,6 +8,7 @@
     margin: 0;
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
 }
 
 h2 {
@@ -75,6 +76,7 @@ div img {
     padding-top: 100px;
     display:flex;
     flex-direction: column;
+    height: 385px;
 }
 
 #container-de-descricao>ol {
@@ -93,9 +95,8 @@ div img {
 }
 
 #frase{
-    width: 180px;
-    margin-left: 860px;
-    margin-right: 970px;
+    width: 210px;
+    margin-left: 847px;
 }
 
 /**
