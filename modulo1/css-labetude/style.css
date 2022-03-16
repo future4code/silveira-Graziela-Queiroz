@@ -67,3 +67,24 @@ footer{
     justify-content: center;
     align-items: center;
 }
+
+@media screen and (min-device-width : 320px) and (max-device-width : 480px){
+    .container-video{
+      grid-template-columns: 1fr ;
+    }
+
+    .FutureTube > input{
+        width: 80px;
+    }
+
+    footer > h5{
+        font-size: 17px;
+    }
+
+}   
+
+
+    
+
+
+
