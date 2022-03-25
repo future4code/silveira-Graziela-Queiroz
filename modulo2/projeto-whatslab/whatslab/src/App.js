@@ -12,71 +12,68 @@ import Mensagem from './components/Mensagem/Mensagem';
 class App extends React.Component {
 
   state = {
-    msg:[
-
-      {
-
-      }
+    msg: [
+    
     ],
-      valorInputNome:"",
-      valorInputMensagem:""
+    valorInputNome: "",
+    valorInputMensagem: ""
   }
 
   adicionarMensagem = () => {
     const novaMensagem = {
-      nome:this.state.valorInputNome,
-      mensagem:this.state.valorInputMensagem,
+      nome: this.state.valorInputNome,
+      mensagem: this.state.valorInputMensagem,
     };
-    const novasMensagens = [...this.state.msg];
+    const novasMensagens = [...this.state.msg, novaMensagem];
 
     this.setState({ msg: novasMensagens });
 
-    this.setState({valorInputNome: "", valorInputMensagem: ""})
+    this.setState({ valorInputNome: "", valorInputMensagem: "" })
   };
-     
+
   onChangeInputNome = (event) => {
-    this.setState({ valorInputNome: event.target.value})
+    this.setState({ valorInputNome: event.target.value })
   }
-    
-  onChangeInputNome = (event) => {
-    this.setState({ valorInputMensagem: event.target.value})
+
+  onChangeInputMensagem = (event) => {
+    this.setState({ valorInputMensagem: event.target.value })
   }
 
   render() {
-    const listPeople = this.state.msg.map((person) => {
+    const listaMsg = this.state.msg.map((msg) => {
       return (
         <Mensagem
-          nomeUsuario={person.nome}
-          fotoUsuario={person.mensagem}
-          
+          nome={msg.nome}
+          mensagem={msg.mensagem}
+
         />
       );
     });
-   
+
     return (
       <div>
-      <div>
-        <div
-          value={this.state.valorInputNome}
-          onChange={this.onChangeInputNome}
-          placeholder={"Nome"}
-          />
-          <div
-          value={this.state.valorInputMensagem}
-          onChange={this.onChangeInputMensagem}
-          placeholder={"Mensagem"}
-          />
-         <div onClick={this.adicionarMensagem}>Adicionar</div>
-      </div>
+        <div>
+          {listaMsg}
+        </div>
 
-      <div>
-        {listPeople}
+        <div>
+          <input
+            value={this.state.valorInputNome}
+            onChange={this.onChangeInputNome}
+            placeholder={"Nome"}
+          />
+          <input
+            value={this.state.valorInputMensagem}
+            onChange={this.onChangeInputMensagem}
+            placeholder={"Mensagem"}
+          />
+          <button onClick={this.adicionarMensagem}>Enviar</button>
+        </div>
+
       </div>
-     
-    </div>
     );
   }
-  
+
 }
 
 export default App;
