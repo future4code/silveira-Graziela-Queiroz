@@ -46,8 +46,9 @@ class Post extends React.Component {
     numeroCurtidas: 0,
     comentando: false,
     numeroComentarios: 0
-  }
 
+  }
+  
   onClickCurtida = () => {
     if(this.state.curtido === false){
       this.setState({
