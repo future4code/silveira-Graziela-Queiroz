@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const MensagemContainer = styled.div`
-  border: 1px solid gray;
   width: 300px;
   margin-bottom: 10px;
 `
@@ -20,7 +19,7 @@ class Mensagem extends React.Component {
 
     return <MensagemContainer>
         <MensagemHeader>
-            <p>{this.props.nome}&nbsp;</p> 
+            <p>{this.props.nome}: &nbsp;</p> 
             <p>{this.props.mensagem} </p>
         </MensagemHeader>
     </MensagemContainer>
