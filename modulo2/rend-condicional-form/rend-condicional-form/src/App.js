@@ -16,7 +16,6 @@ const ConteudoDiv = styled.div`
 `
 
 const Botao = styled.button`
-
   margin:40px;
   padding:10px
 `
@@ -43,6 +42,8 @@ class App extends React.Component {
         return <Etapa3 />;
       case 4:
         return <Final />;
+      default: 
+        return <Etapa1 />
     }
   }
 
@@ -51,7 +52,8 @@ class App extends React.Component {
       <ContainerMain>
         <ConteudoDiv>
           {this.renderizaEtapa()}
-          <Botao onClick={this.irParaProximaEtapa}>  Proxima etapa</Botao>
+          {this.state.etapa !== 4 ?  <Botao onClick={this.irParaProximaEtapa}>Proxima etapa</Botao> : <p></p>}
+
         </ConteudoDiv>
 
       </ContainerMain >
