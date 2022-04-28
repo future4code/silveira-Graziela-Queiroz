@@ -6,8 +6,11 @@ export const LoginPage = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
- const navigate = useNavigate()
+  const navigate = useNavigate()
 
+  const goToListPage = () => {
+    navigate(-1)
+  }
   const onChangeEmail = (event) => {
     setEmail(event.target.value)
   };
@@ -17,7 +20,8 @@ export const LoginPage = () => {
   };
 
   const postLogin = () => {
-    
+    navigate("/admin/trips/list")
+
     const url = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/graziela-queiroz-silveira/login"
     const body = {
       email: email,
@@ -35,11 +39,6 @@ export const LoginPage = () => {
       }, [navigate])
   };
 
-
-  const goToListPage = () => {
-    navigate(-1)
-  }
-
   // const goToAdmPage = () => {
   //   navigate("/admin/trips/list")
   // }
@@ -53,7 +52,7 @@ export const LoginPage = () => {
         <input placeholder='email' type="email" value={email} onChange={onChangeEmail} />
         <input placeholder='password' type="password" value={password} onChange={onChangePassword} />
         <button onClick={goToListPage}>Voltar</button>
-        <button onClick={postLogin()}>Entrar</button>
+        <button onClick={postLogin}>Entrar</button>
       </form>
 
     </div>
