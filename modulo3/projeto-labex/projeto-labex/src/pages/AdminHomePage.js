@@ -3,11 +3,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProtectedPage } from '../hooks/useProtectedPage';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
 export const AdminHomePage = () => {
+  const [trips, setTrips] = useState([])
+
   useProtectedPage()
 
   const navigate = useNavigate()
@@ -24,12 +26,14 @@ export const AdminHomePage = () => {
         }
       )
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data.trips)
+        setTrips(response.data.trips)
       })
       .catch((error) => {
         console.log('Deu erro!!!', error.response)
       });
   }, [navigate]);
+
 
   const goToCreateListPage = () => {
     navigate("/admin/trips/create")
@@ -46,13 +50,25 @@ export const AdminHomePage = () => {
     navigate("/admin/trips/:id")
   }
 
+  const admTrips = trips.map((trip) => {
+    return (
+      <div key={trip.id}>
+
+        <p>{trip.name}</p>
+        <p>{trip.planet}</p>
+        <p>{trip.date}</p>
+      </div>
+    );
+
+  })
+
   return (
     <div>
 
       <div>
         <p>Eu sou a pagina Admin home</p>
       </div>
-
+      <div> {admTrips}</div>
       <button onClick={goToCreateListPage}>Criar Viagem</button>
       <button onClick={goToLogout}>VoltarHome</button>
       <button onClick={goToBack}>VoltarLogin</button>
