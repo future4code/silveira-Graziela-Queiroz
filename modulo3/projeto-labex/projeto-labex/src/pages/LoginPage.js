@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// import useForm from "./hooks/useForm";
 
 export const LoginPage = () => {
   const [email, setEmail] = useState("")
@@ -19,7 +20,8 @@ export const LoginPage = () => {
     setPassword(event.target.value)
   };
 
-  const postLogin = () => {
+  const postLogin = (event) => {
+    // event.preventDefault()
     navigate("/admin/trips/list")
 
     const url = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/graziela-queiroz-silveira/login"
@@ -27,6 +29,7 @@ export const LoginPage = () => {
       email: email,
       password: password
     };
+    
 
     axios.post(url, body)
       .then((res) => {
@@ -44,14 +47,31 @@ export const LoginPage = () => {
   // }
 
   return (
+
     <div>
       <div>
         <p>Eu sou a pagina Login</p>
       </div>
-      <form>
-        <input placeholder='email' type="email" value={email} onChange={onChangeEmail} />
-        <input placeholder='password' type="password" value={password} onChange={onChangePassword} />
-        <button onClick={goToListPage}>Voltar</button>
+      <form onSubmit={goToListPage}>
+        <form>
+          onSubmit =
+        </form>
+        <input placeholder='email'
+          type="email"
+          value={email}
+          onChange={onChangeEmail}
+          // required
+          // type="email"
+          // pattern={"^.{5,}"}
+          // title={"Sua senha deve conter no minimo 5 caracteres"}
+         />
+        <input placeholder='password'
+          type="password"
+          value={password}
+          onChange={onChangePassword}
+          // required
+        />
+        <button >Voltar</button>
         <button onClick={postLogin}>Entrar</button>
       </form>
 
