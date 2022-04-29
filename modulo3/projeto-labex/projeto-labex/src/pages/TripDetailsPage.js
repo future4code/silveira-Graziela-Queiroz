@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useProtectedPage } from '../hooks/useProtectedPage';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 export const TripDetailsPage = () => {
   const [trip, setTrip] = useState([])
@@ -11,11 +12,13 @@ export const TripDetailsPage = () => {
   const navigate = useNavigate()
   useProtectedPage()
 
-  useEffect((id) => {
+  const params = useParams()
+
+  useEffect(() => {
     const token = localStorage.getItem('token')
     axios
       .get(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labeX/graziela-queiroz-silveira/trip/${id}`,
+        `https://us-central1-labenu-apis.cloudfunctions.net/labeX/graziela-queiroz-silveira/trip/${params.id}`,
         {
           headers: {
             auth: token
@@ -23,20 +26,23 @@ export const TripDetailsPage = () => {
         }
       )
       .then((response) => {
-        console.log(response.data)
+        console.log("candidatos", response.data.trip)
+        setTrip(response.data.trip)
+        setcandidate(response.data.trip.candidates)
       })
       .catch((error) => {
         console.log('Deu erro!!!', error.response)
       });
   }, []);
 
-  const putCandidate = (tripId, candidateId) => {
-    // event.preventDefault()
+  const putCandidate = (idCandidate, aceite) => {
     const token = localStorage.getItem('token')
-    const body = { approve: true }
+    const body = { approve: aceite }
+    console.log("Idcandidato:", idCandidate)
+    console.log("Idcandidato:", aceite)
     axios
       .put(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labeX/graziela-queiroz-silveira/trips/${tripId}/candidates/${candidateId}/decide`,
+        `https://us-central1-labenu-apis.cloudfunctions.net/labeX/graziela-queiroz-silveira/trips/${params.id}/candidates/${idCandidate}/decide`,
         body,
         {
           headers: { auth: token }
@@ -58,8 +64,8 @@ export const TripDetailsPage = () => {
         <p>{candidate.age}</p>
         <p>{candidate.country}</p>
         <p>{candidate.applicationText}</p>
-        <button onClick={putCandidate}>Aprovar</button>
-        <button onClick={putCandidate}>Reprovar</button>
+        <button onClick={() => {putCandidate(candidate.id, true)}}>Aprovar</button>
+        <button onClick={() => {putCandidate(candidate.id, false)}}>Reprovar</button>
       </div>
     );
   })

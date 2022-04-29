@@ -27,8 +27,7 @@ export const AdminHomePage = () => {
       });
   }, [navigate]);
 
-  const deletTrip = (id, event) => {
-  // event.preventDefault()
+  const deletTrip = (id) => {
     const token = localStorage.getItem('token')
     axios
       .delete(
@@ -61,13 +60,13 @@ export const AdminHomePage = () => {
 
   const admTrips = trips.map((trip) => {
     return (
-      <div key={trip.id} onClick={goToDetailsTripPage}>
+      <div key={trip.id} onClick={() => { goToDetailsTripPage(trip.id)}}>
         <p>{trip.name}</p>
-        <button onClick={deletTrip}>EXCLUIR</button>
+        <button onClick={() => {deletTrip(trip.id)}}>Excluir</button>
       </div>
     );
   })
-
+    const logout = ()
   return (
     <div>
       <h1>Eu sou a pagina Admin home</h1>
