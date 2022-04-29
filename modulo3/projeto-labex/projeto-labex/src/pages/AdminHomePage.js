@@ -66,7 +66,7 @@ export const AdminHomePage = () => {
       </div>
     );
   })
-    const logout = ()
+    
   return (
     <div>
       <h1>Eu sou a pagina Admin home</h1>
