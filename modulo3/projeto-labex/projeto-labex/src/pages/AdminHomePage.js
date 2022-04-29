@@ -1,17 +1,13 @@
-// import styled from 'styled-components'
-// import { AdminHomePage } from './pages/AdminHomePage'
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProtectedPage } from '../hooks/useProtectedPage';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-
 export const AdminHomePage = () => {
   const [trips, setTrips] = useState([])
 
   useProtectedPage()
-
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -20,20 +16,33 @@ export const AdminHomePage = () => {
       .get(
         'https://us-central1-labenu-apis.cloudfunctions.net/labeX/graziela-queiroz-silveira/trips',
         {
-          headers: {
-            auth: token
-          }
-        }
-      )
+          headers: { auth: token }
+        })
       .then((response) => {
         console.log(response.data.trips)
         setTrips(response.data.trips)
       })
       .catch((error) => {
-        console.log('Deu erro!!!', error.response)
+        alert('Deu erro!!!', error.response)
       });
   }, [navigate]);
 
+  const deletTrip = (id, event) => {
+  // event.preventDefault()
+    const token = localStorage.getItem('token')
+    axios
+      .delete(
+        `https://us-central1-labenu-apis.cloudfunctions.net/labeX/graziela-queiroz-silveira/trips/${id}`,
+        { headers: { auth: token }
+        })
+      .then((response) => {
+        console.log("Deletado com sucesso", response.data)
+        setTrips(response.data.trips)
+      })
+      .catch((error) => {
+        console.log('Não foi possivel deletar a viagem, tente novamente!!!', error.response)
+      });
+  };
 
   const goToCreateListPage = () => {
     navigate("/admin/trips/create")
@@ -46,33 +55,28 @@ export const AdminHomePage = () => {
     navigate(-1)
   }
 
-  const goToDetailsTripPage = () => {
-    navigate("/admin/trips/:id")
+  const goToDetailsTripPage = (id) => {
+    navigate(`/admin/trips/${id}`)
   }
 
   const admTrips = trips.map((trip) => {
     return (
-      <div key={trip.id}>
-
+      <div key={trip.id} onClick={goToDetailsTripPage}>
         <p>{trip.name}</p>
-        <p>{trip.planet}</p>
-        <p>{trip.date}</p>
+        <button onClick={deletTrip}>EXCLUIR</button>
       </div>
     );
-
   })
 
   return (
     <div>
+      <h1>Eu sou a pagina Admin home</h1>
+     
+      <div>{admTrips}</div>
 
-      <div>
-        <p>Eu sou a pagina Admin home</p>
-      </div>
-      <div> {admTrips}</div>
       <button onClick={goToCreateListPage}>Criar Viagem</button>
-      <button onClick={goToLogout}>VoltarHome</button>
-      <button onClick={goToBack}>VoltarLogin</button>
-      <button onClick={goToDetailsTripPage}>Detalhe Viagem</button>
+      <button onClick={goToLogout}>Logout</button>
+      <button onClick={goToBack}>Voltar</button>
 
     </div>
   );

@@ -14,7 +14,6 @@ export const ListTripsPage = () => {
         'https://us-central1-labenu-apis.cloudfunctions.net/labeX/graziela-queiroz-silveira/trips',
       )
       .then((response) => {
-        console.log(response.data.trips)
         setTrips(response.data.trips)
       })
       .catch((error) => {
