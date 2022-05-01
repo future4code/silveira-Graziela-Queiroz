@@ -26,16 +26,15 @@ import { useNavigate } from 'react-router-dom';
   height: 100vh;
    `
   const BtnAdm = styled.div`
-  margin-left:40%;
   margin-bottom: 15px;
-    height: 40px;
-    padding: 0px 20px;
-    border-radius: 20px;
-    border: none;
-    color: white;
-    font-size: 16px;
-    background-color: slategray;
-    min-width: 100px;
+  height: 40px;
+  padding: 0px 20px;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  background-color: slategray;
+  min-width: 100px;
   `
 export const HomePage = () => {
   const navigate = useNavigate()

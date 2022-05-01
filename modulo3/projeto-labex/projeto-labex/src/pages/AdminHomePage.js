@@ -47,6 +47,7 @@ export const AdminHomePage = () => {
     navigate("/admin/trips/create")
   }
   const goToLogout = () => {
+    localStorage.clear()
     navigate("/")
   }
 

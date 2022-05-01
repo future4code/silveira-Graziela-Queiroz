@@ -3,36 +3,49 @@ import React from 'react';
 import useForm from "../hooks/useForm";
 import axios from 'axios'
 import { useState, useEffect } from 'react';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import ListItemText from '@mui/material/ListItemText';
+import paises from './paises.json'
+
+const theme = createTheme();
 
 export const ApplicationFormPage = () => {
-    const[tripId, setTripId] = useState("");
-    
+    const [tripId, setTripId] = useState("");
+
     const [trips, setTrips] = useState([]);
     const { form, onChange, cleanFields } = useForm({
-        
         name: "",
         age: "",
         applicationText: "",
         profession: "",
         country: ""
     });
-    
 
-    useEffect((event) => {
-       getTrip()
-    },[])
-    const getTrip =() =>{
+    useEffect(() => {
+        getTrip()
+    }, [])
+    const getTrip = () => {
         axios
-        .get(
-            `https://us-central1-labenu-apis.cloudfunctions.net/labeX/graziela-queiroz-silveira/trips`
-        )
-        .then((response) => {
-            setTrips(response.data.trips)
-            console.log(response.data.trips)
-        })
-        .catch((error) => {
-            console.log('Deu erro!!!', error.response)
-        });
+            .get(
+                `https://us-central1-labenu-apis.cloudfunctions.net/labeX/graziela-queiroz-silveira/trips`
+            )
+            .then((response) => {
+                setTrips(response.data.trips)
+                console.log(response.data.trips)
+            })
+            .catch((error) => {
+                console.log('Deu erro!!!', error.response)
+            });
     }
 
     const applyToTrip = (event) => {
@@ -56,12 +69,8 @@ export const ApplicationFormPage = () => {
             .catch((error) => {
                 console.log('Deu erro!!!', error.response)
             });
-
-        
     };
 
-
-    
     const navigate = useNavigate();
 
     const goBack = () => {
@@ -70,315 +79,129 @@ export const ApplicationFormPage = () => {
 
     const tripsList = trips && trips.map((trip) => {
         return (
-            <option key={trip.id} value = {trip.id}>
-                {trip.name}
-            </option>
+            <MenuItem key={trip.id} value={trip.id}>
+                <ListItemText primary={trip.name} />
+            </MenuItem>
         );
     })
+
+    const paiseList =  paises && paises.map((pais) => {
+        return(
+            <MenuItem key={pais.id} value={pais.name}>
+                <ListItemText primary={pais.name} />
+            </MenuItem>
+        );
+    })
+
     const onChangeSelect = (event) => {
         setTripId(event.target.value)
     }
-     console.log(tripId)
+
     return (
-        <div>
-            <h1>Inscreva para uma viagem</h1>
-
-            <form onSubmit={applyToTrip } >
-            
-                <select name="tripId" onChange={onChangeSelect} value = {tripId}>
-                    <option value={""} disabled>Escolha uma viagem</option>
-                    {tripsList}
-                </select>
-                
-
-                <input
-                    name="name"
-                    value={form.name}
-                    onChange={onChange}
-                    placeholder="Nome"
-
-                />
-                <input
-                    name="age"
-                    value={form.age}
-                    onChange={onChange}
-                    placeholder="idade"
-
-                />
-                <input
-                    name="applicationText"
-                    value={form.applicationText}
-                    onChange={onChange}
-                    placeholder="texto Candidatura"
-
-                />
-                <input
-                    name="profession"
-                    value={form.profession}
-                    onChange={onChange}
-                    placeholder="profissao"
-
-                />
-                <select  name="country" onChange={onChange}>
-                    <option value="" disable>
-                        Selecione um pais
-                    </option>
-                    <option value="Brasil" selected="selected">Brasil</option>
-                    <option value="Afeganistão">Afeganistão</option>
-                    <option value="África do Sul">África do Sul</option>
-                    <option value="Albânia">Albânia</option>
-                    <option value="Alemanha">Alemanha</option>
-                    <option value="Andorra">Andorra</option>
-                    <option value="Angola">Angola</option>
-                    <option value="Anguilla">Anguilla</option>
-                    <option value="Antilhas Holandesas">Antilhas Holandesas</option>
-                    <option value="Antárctida">Antárctida</option>
-                    <option value="Antígua e Barbuda">Antígua e Barbuda</option>
-                    <option value="Argentina">Argentina</option>
-                    <option value="Argélia">Argélia</option>
-                    <option value="Armênia">Armênia</option>
-                    <option value="Aruba">Aruba</option>
-                    <option value="Arábia Saudita">Arábia Saudita</option>
-                    <option value="Austrália">Austrália</option>
-                    <option value="Áustria">Áustria</option>
-                    <option value="Azerbaijão">Azerbaijão</option>
-                    <option value="Bahamas">Bahamas</option>
-                    <option value="Bahrein">Bahrein</option>
-                    <option value="Bangladesh">Bangladesh</option>
-                    <option value="Barbados">Barbados</option>
-                    <option value="Belize">Belize</option>
-                    <option value="Benim">Benim</option>
-                    <option value="Bermudas">Bermudas</option>
-                    <option value="Bielorrússia">Bielorrússia</option>
-                    <option value="Bolívia">Bolívia</option>
-                    <option value="Botswana">Botswana</option>
-                    <option value="Brunei">Brunei</option>
-                    <option value="Bulgária">Bulgária</option>
-                    <option value="Burkina Faso">Burkina Faso</option>
-                    <option value="Burundi">Burundi</option>
-                    <option value="Butão">Butão</option>
-                    <option value="Bélgica">Bélgica</option>
-                    <option value="Bósnia e Herzegovina">Bósnia e Herzegovina</option>
-                    <option value="Cabo Verde">Cabo Verde</option>
-                    <option value="Camarões">Camarões</option>
-                    <option value="Camboja">Camboja</option>
-                    <option value="Canadá">Canadá</option>
-                    <option value="Catar">Catar</option>
-                    <option value="Cazaquistão">Cazaquistão</option>
-                    <option value="Chade">Chade</option>
-                    <option value="Chile">Chile</option>
-                    <option value="China">China</option>
-                    <option value="Chipre">Chipre</option>
-                    <option value="Colômbia">Colômbia</option>
-                    <option value="Comores">Comores</option>
-                    <option value="Coreia do Norte">Coreia do Norte</option>
-                    <option value="Coreia do Sul">Coreia do Sul</option>
-                    <option value="Costa do Marfim">Costa do Marfim</option>
-                    <option value="Costa Rica">Costa Rica</option>
-                    <option value="Croácia">Croácia</option>
-                    <option value="Cuba">Cuba</option>
-                    <option value="Dinamarca">Dinamarca</option>
-                    <option value="Djibouti">Djibouti</option>
-                    <option value="Dominica">Dominica</option>
-                    <option value="Egito">Egito</option>
-                    <option value="El Salvador">El Salvador</option>
-                    <option value="Emirados Árabes Unidos">Emirados Árabes Unidos</option>
-                    <option value="Equador">Equador</option>
-                    <option value="Eritreia">Eritreia</option>
-                    <option value="Escócia">Escócia</option>
-                    <option value="Eslováquia">Eslováquia</option>
-                    <option value="Eslovênia">Eslovênia</option>
-                    <option value="Espanha">Espanha</option>
-                    <option value="Estados Federados da Micronésia">Estados Federados da Micronésia</option>
-                    <option value="Estados Unidos">Estados Unidos</option>
-                    <option value="Estônia">Estônia</option>
-                    <option value="Etiópia">Etiópia</option>
-                    <option value="Fiji">Fiji</option>
-                    <option value="Filipinas">Filipinas</option>
-                    <option value="Finlândia">Finlândia</option>
-                    <option value="França">França</option>
-                    <option value="Gabão">Gabão</option>
-                    <option value="Gana">Gana</option>
-                    <option value="Geórgia">Geórgia</option>
-                    <option value="Gibraltar">Gibraltar</option>
-                    <option value="Granada">Granada</option>
-                    <option value="Gronelândia">Gronelândia</option>
-                    <option value="Grécia">Grécia</option>
-                    <option value="Guadalupe">Guadalupe</option>
-                    <option value="Guam">Guam</option>
-                    <option value="Guatemala">Guatemala</option>
-                    <option value="Guernesei">Guernesei</option>
-                    <option value="Guiana">Guiana</option>
-                    <option value="Guiana Francesa">Guiana Francesa</option>
-                    <option value="Guiné">Guiné</option>
-                    <option value="Guiné Equatorial">Guiné Equatorial</option>
-                    <option value="Guiné-Bissau">Guiné-Bissau</option>
-                    <option value="Gâmbia">Gâmbia</option>
-                    <option value="Haiti">Haiti</option>
-                    <option value="Honduras">Honduras</option>
-                    <option value="Hong Kong">Hong Kong</option>
-                    <option value="Hungria">Hungria</option>
-                    <option value="Ilha Bouvet">Ilha Bouvet</option>
-                    <option value="Ilha de Man">Ilha de Man</option>
-                    <option value="Ilha do Natal">Ilha do Natal</option>
-                    <option value="Ilha Heard e Ilhas McDonald">Ilha Heard e Ilhas McDonald</option>
-                    <option value="Ilha Norfolk">Ilha Norfolk</option>
-                    <option value="Ilhas Cayman">Ilhas Cayman</option>
-                    <option value="Ilhas Cocos (Keeling)">Ilhas Cocos (Keeling)</option>
-                    <option value="Ilhas Cook">Ilhas Cook</option>
-                    <option value="Ilhas Feroé">Ilhas Feroé</option>
-                    <option value="Ilhas Geórgia do Sul e Sandwich do Sul">Ilhas Geórgia do Sul e Sandwich do Sul</option>
-                    <option value="Ilhas Malvinas">Ilhas Malvinas</option>
-                    <option value="Ilhas Marshall">Ilhas Marshall</option>
-                    <option value="Ilhas Menores Distantes dos Estados Unidos">Ilhas Menores Distantes dos Estados Unidos</option>
-                    <option value="Ilhas Salomão">Ilhas Salomão</option>
-                    <option value="Ilhas Virgens Americanas">Ilhas Virgens Americanas</option>
-                    <option value="Ilhas Virgens Britânicas">Ilhas Virgens Britânicas</option>
-                    <option value="Ilhas Åland">Ilhas Åland</option>
-                    <option value="Indonésia">Indonésia</option>
-                    <option value="Inglaterra">Inglaterra</option>
-                    <option value="Índia">Índia</option>
-                    <option value="Iraque">Iraque</option>
-                    <option value="Irlanda do Norte">Irlanda do Norte</option>
-                    <option value="Irlanda">Irlanda</option>
-                    <option value="Irã">Irã</option>
-                    <option value="Islândia">Islândia</option>
-                    <option value="Israel">Israel</option>
-                    <option value="Itália">Itália</option>
-                    <option value="Iêmen">Iêmen</option>
-                    <option value="Jamaica">Jamaica</option>
-                    <option value="Japão">Japão</option>
-                    <option value="Jersey">Jersey</option>
-                    <option value="Jordânia">Jordânia</option>
-                    <option value="Kiribati">Kiribati</option>
-                    <option value="Kuwait">Kuwait</option>
-                    <option value="Laos">Laos</option>
-                    <option value="Lesoto">Lesoto</option>
-                    <option value="Letônia">Letônia</option>
-                    <option value="Libéria">Libéria</option>
-                    <option value="Liechtenstein">Liechtenstein</option>
-                    <option value="Lituânia">Lituânia</option>
-                    <option value="Luxemburgo">Luxemburgo</option>
-                    <option value="Líbano">Líbano</option>
-                    <option value="Líbia">Líbia</option>
-                    <option value="Macau">Macau</option>
-                    <option value="Macedônia">Macedônia</option>
-                    <option value="Madagáscar">Madagáscar</option>
-                    <option value="Malawi">Malawi</option>
-                    <option value="Maldivas">Maldivas</option>
-                    <option value="Mali">Mali</option>
-                    <option value="Malta">Malta</option>
-                    <option value="Malásia">Malásia</option>
-                    <option value="Marianas Setentrionais">Marianas Setentrionais</option>
-                    <option value="Marrocos">Marrocos</option>
-                    <option value="Martinica">Martinica</option>
-                    <option value="Mauritânia">Mauritânia</option>
-                    <option value="Maurícia">Maurícia</option>
-                    <option value="Mayotte">Mayotte</option>
-                    <option value="Moldávia">Moldávia</option>
-                    <option value="Mongólia">Mongólia</option>
-                    <option value="Montenegro">Montenegro</option>
-                    <option value="Montserrat">Montserrat</option>
-                    <option value="Moçambique">Moçambique</option>
-                    <option value="Myanmar">Myanmar</option>
-                    <option value="México">México</option>
-                    <option value="Mônaco">Mônaco</option>
-                    <option value="Namíbia">Namíbia</option>
-                    <option value="Nauru">Nauru</option>
-                    <option value="Nepal">Nepal</option>
-                    <option value="Nicarágua">Nicarágua</option>
-                    <option value="Nigéria">Nigéria</option>
-                    <option value="Niue">Niue</option>
-                    <option value="Noruega">Noruega</option>
-                    <option value="Nova Caledônia">Nova Caledônia</option>
-                    <option value="Nova Zelândia">Nova Zelândia</option>
-                    <option value="Níger">Níger</option>
-                    <option value="Omã">Omã</option>
-                    <option value="Palau">Palau</option>
-                    <option value="Palestina">Palestina</option>
-                    <option value="Panamá">Panamá</option>
-                    <option value="Papua-Nova Guiné">Papua-Nova Guiné</option>
-                    <option value="Paquistão">Paquistão</option>
-                    <option value="Paraguai">Paraguai</option>
-                    <option value="País de Gales">País de Gales</option>
-                    <option value="Países Baixos">Países Baixos</option>
-                    <option value="Peru">Peru</option>
-                    <option value="Pitcairn">Pitcairn</option>
-                    <option value="Polinésia Francesa">Polinésia Francesa</option>
-                    <option value="Polônia">Polônia</option>
-                    <option value="Porto Rico">Porto Rico</option>
-                    <option value="Portugal">Portugal</option>
-                    <option value="Quirguistão">Quirguistão</option>
-                    <option value="Quênia">Quênia</option>
-                    <option value="Reino Unido">Reino Unido</option>
-                    <option value="República Centro-Africana">República Centro-Africana</option>
-                    <option value="República Checa">República Checa</option>
-                    <option value="República Democrática do Congo">República Democrática do Congo</option>
-                    <option value="República do Congo">República do Congo</option>
-                    <option value="República Dominicana">República Dominicana</option>
-                    <option value="Reunião">Reunião</option>
-                    <option value="Romênia">Romênia</option>
-                    <option value="Ruanda">Ruanda</option>
-                    <option value="Rússia">Rússia</option>
-                    <option value="Saara Ocidental">Saara Ocidental</option>
-                    <option value="Saint Martin">Saint Martin</option>
-                    <option value="Saint-Barthélemy">Saint-Barthélemy</option>
-                    <option value="Saint-Pierre e Miquelon">Saint-Pierre e Miquelon</option>
-                    <option value="Samoa Americana">Samoa Americana</option>
-                    <option value="Samoa">Samoa</option>
-                    <option value="Santa Helena, Ascensão e Tristão da Cunha">Santa Helena, Ascensão e Tristão da Cunha</option>
-                    <option value="Santa Lúcia">Santa Lúcia</option>
-                    <option value="Senegal">Senegal</option>
-                    <option value="Serra Leoa">Serra Leoa</option>
-                    <option value="Seychelles">Seychelles</option>
-                    <option value="Singapura">Singapura</option>
-                    <option value="Somália">Somália</option>
-                    <option value="Sri Lanka">Sri Lanka</option>
-                    <option value="Suazilândia">Suazilândia</option>
-                    <option value="Sudão">Sudão</option>
-                    <option value="Suriname">Suriname</option>
-                    <option value="Suécia">Suécia</option>
-                    <option value="Suíça">Suíça</option>
-                    <option value="Svalbard e Jan Mayen">Svalbard e Jan Mayen</option>
-                    <option value="São Cristóvão e Nevis">São Cristóvão e Nevis</option>
-                    <option value="São Marino">São Marino</option>
-                    <option value="São Tomé e Príncipe">São Tomé e Príncipe</option>
-                    <option value="São Vicente e Granadinas">São Vicente e Granadinas</option>
-                    <option value="Sérvia">Sérvia</option>
-                    <option value="Síria">Síria</option>
-                    <option value="Tadjiquistão">Tadjiquistão</option>
-                    <option value="Tailândia">Tailândia</option>
-                    <option value="Taiwan">Taiwan</option>
-                    <option value="Tanzânia">Tanzânia</option>
-                    <option value="Terras Austrais e Antárticas Francesas">Terras Austrais e Antárticas Francesas</option>
-                    <option value="Território Britânico do Oceano Índico">Território Britânico do Oceano Índico</option>
-                    <option value="Timor-Leste">Timor-Leste</option>
-                    <option value="Togo">Togo</option>
-                    <option value="Tonga">Tonga</option>
-                    <option value="Toquelau">Toquelau</option>
-                    <option value="Trinidad e Tobago">Trinidad e Tobago</option>
-                    <option value="Tunísia">Tunísia</option>
-                    <option value="Turcas e Caicos">Turcas e Caicos</option>
-                    <option value="Turquemenistão">Turquemenistão</option>
-                    <option value="Turquia">Turquia</option>
-                    <option value="Tuvalu">Tuvalu</option>
-                    <option value="Ucrânia">Ucrânia</option>
-                    <option value="Uganda">Uganda</option>
-                    <option value="Uruguai">Uruguai</option>
-                    <option value="Uzbequistão">Uzbequistão</option>
-                    <option value="Vanuatu">Vanuatu</option>
-                    <option value="Vaticano">Vaticano</option>
-                    <option value="Venezuela">Venezuela</option>
-                    <option value="Vietname">Vietname</option>
-                    <option value="Wallis e Futuna">Wallis e Futuna</option>
-                    <option value="Zimbabwe">Zimbabwe</option>
-                    <option value="Zâmbia">Zâmbia</option>
-                </select>
-
-                <button onClick={goBack}>Voltar</button>
-                <button>Enviar</button>
-            </form>
-
-        </div >
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="sm">
+                <CssBaseline />
+                <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <Typography component="h1" variant="h4">
+                        Inscreva para uma viagem
+                    </Typography>
+                    <Box component="form" noValidate onSubmit={applyToTrip} sx={{ mt: 3 }}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <InputLabel>Escolha uma viagem</InputLabel>
+                                <Select
+                                    name="tripId"
+                                    value={tripId}
+                                    onChange={onChangeSelect}
+                                    label="teste"
+                                    required
+                                >
+                                    <MenuItem value=''>
+                                        <ListItemText primary={'Escolha uma viagem'} />
+                                    </MenuItem>
+                                    {tripsList}
+                                </Select>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    name="name"
+                                    value={form.name}
+                                    onChange={onChange}
+                                    required
+                                    fullWidth
+                                    id="name"
+                                    label="Nome"
+                                    autoFocus
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    value={form.age}
+                                    onChange={onChange}
+                                    required
+                                    fullWidth
+                                    id="age"
+                                    label="Idade"
+                                    name="age"
+                                    autoComplete="family-name"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    value={form.applicationText}
+                                    onChange={onChange}
+                                    required
+                                    fullWidth
+                                    id="applicationText"
+                                    label="Texto Candidatura"
+                                    name="applicationText"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    name="profession"
+                                    value={form.profession}
+                                    onChange={onChange}
+                                    required
+                                    fullWidth
+                                    label="Profissao"
+                                    id="profession"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <InputLabel>Selecione um pais</InputLabel>
+                                <Select
+                                    name="country"
+                                    value={form.country}
+                                    onChange={onChange}
+                                    required
+                                >
+                                    <MenuItem  value={"Selecione um pais"}> 
+                                        <ListItemText primary={'Selecione um pais'}/>
+                                    </MenuItem>
+                                    {paiseList}
+                                </Select>
+                            </Grid>
+                        </Grid>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 1 }}
+                        >
+                            Enviar
+                        </Button>
+                        <Button
+                            onClick={goBack}
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 1, mb: 2 }}
+                        >
+                            Voltar
+                        </Button>
+                    </Box>
+                </Box>
+            </Container>
+        </ThemeProvider>
     );
 }

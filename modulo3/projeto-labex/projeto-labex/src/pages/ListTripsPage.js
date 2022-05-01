@@ -3,6 +3,19 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import styled from '@emotion/styled';
+
+const ContainerTrips = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30px;
+  align-items: center;
+`
 
 export const ListTripsPage = () => {
   const [trips, setTrips] = useState([])
@@ -31,31 +44,30 @@ export const ListTripsPage = () => {
 
   const listTrips = trips.map((trip) => {
     return (
-      <div key={trip.id}>
-        <p>Name:{trip.name}</p>
-        <p>Descriçao:{trip.description}</p>
-        <p>Planeta:{trip.planet}</p>
-        <p>Duração em dias:{trip.durationindays}</p>
-        <p>Data:{trip.date}</p>
-      </div>
+      <Card sx={{ display: 'flex', justifyContent: 'center' }} >
+        <CardContent key={trip.id} sx={{ marginBottom: 2, border: 2, maxWidth: 350 }}>
+          <Typography variant="body2">Name: {trip.name}</Typography>
+          <Typography variant="body2">Descriçao: {trip.description}</Typography>
+          <Typography variant="body2">Planeta: {trip.planet}</Typography>
+          <Typography variant="body2">Duração em dias: {trip.durationindays}</Typography>
+          <Typography variant="body2">Data: {trip.date}</Typography>
+        </CardContent>
+      </Card >
     );
   })
 
   return (
-    <div>
+    <ContainerTrips>
+      <Typography variant="h4" component="div" sx={{ display: 'flex', justifyContent: 'center', marginBottom: 1 }}>
+        Lista de Viagens
+      </Typography>
 
-      <div>
-        <p>"Eu sou a pagina List Trips"</p>
-      </div>
+      <Button fullWidth variant="contained" sx={{ mt: 1.5, mb: 1, maxWidth: 350 }}onClick={goToHomePage}>Voltar</Button>
+      <Button fullWidth variant="contained" sx={{ mt: 1.5, mb: 3, maxWidth: 350}}onClick={goApplicationPage}>Inscrever-se</Button>
 
-      <div>
-          {listTrips}
-      </div>
+      {listTrips}
 
-      <button onClick={goToHomePage}>Voltar</button>
-      <button onClick={goApplicationPage}>Inscrever-se</button>
-
-    </div>
+    </ContainerTrips>
   );
 
 }  

@@ -71,7 +71,7 @@ export const TripDetailsPage = () => {
   })
 
   const goBack = () => {
-    navigate(-1)
+    navigate("-1")
   }
 
   return (
