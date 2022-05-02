@@ -1,0 +1,35 @@
+.ncurtir{
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    border: 1px solid red;
+    color: red;
+    font-size: 50px;
+    transform: scale(0.7);
+    transition: all 0.2s ease 0s;
+    position: relative;
+    box-shadow: rgb(205 205 205 / 73%) 0px 0px 15px 0px;
+    overflow: hidden;
+}
+
+.curtir{
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    border: 1px solid green;
+    color: green;
+    font-size: 50px;
+    transform: scale(0.7);
+    transition: all 0.2s ease 0s;
+    position: relative;
+    box-shadow: rgb(205 205 205 / 73%) 0px 0px 15px 0px;
+    overflow: hidden;
+}
+
+.divCurtir{
+    display: flex;
+    justify-content: space-evenly;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 10px 0px;
+}
