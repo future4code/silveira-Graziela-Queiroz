@@ -70,7 +70,7 @@ export const AdminHomePage = () => {
     
   return (
     <div>
-      <h1>Eu sou a pagina Admin home</h1>
+      <h2>Painel Administrativo</h2>
      
       <div>{admTrips}</div>
 

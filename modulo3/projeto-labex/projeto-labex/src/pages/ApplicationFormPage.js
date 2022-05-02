@@ -15,7 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import ListItemText from '@mui/material/ListItemText';
-import paises from './paises.json'
+import paises from './json/paises.json'
 
 const theme = createTheme();
 
@@ -41,7 +41,6 @@ export const ApplicationFormPage = () => {
             )
             .then((response) => {
                 setTrips(response.data.trips)
-                console.log(response.data.trips)
             })
             .catch((error) => {
                 console.log('Deu erro!!!', error.response)
@@ -67,7 +66,7 @@ export const ApplicationFormPage = () => {
                 cleanFields();
             })
             .catch((error) => {
-                console.log('Deu erro!!!', error.response)
+                alert('Deu erro!!!', error.response)
             });
     };
 

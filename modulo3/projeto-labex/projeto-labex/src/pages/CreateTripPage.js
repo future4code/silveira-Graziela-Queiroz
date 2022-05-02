@@ -52,7 +52,7 @@ export const CreateTripPage = () => {
 
   return (
     <div>
-      <h1>Eu sou a pagina Create Trips</h1>
+      <h1>Criar Viagem</h1>
 
       <form onSubmit={creatTrip}>
         <input
@@ -65,14 +65,19 @@ export const CreateTripPage = () => {
           title="O nome deve ter no mínimo 5 letras"
           type="text"
         />
-        <input
-          name="planet"
-          value={form.planet}
-          onChange={onChange}
-          placeholder="planeta"
-          required
-          type="text"
-        />
+        <select name="planet" onChange={onChange}>
+          <option value="" disable>
+            Selecione um Planeta
+          </option>
+          <option value="Mercúrio" selected="selected">Mercúrio</option>
+          <option value="Vênus" >Vênus</option>
+          <option value="Terra" >Terra</option>
+          <option value="Marte" >Marte</option>
+          <option value="Júpiter" >Júpiter</option>
+          <option value="Saturno" >Saturno</option>
+          <option value="Urano" >Urano</option>
+          <option value="Netuno" >Netuno</option>
+        </select>
         <input
           name="date"
           value={form.date}

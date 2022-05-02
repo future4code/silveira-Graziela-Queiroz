@@ -71,12 +71,12 @@ export const TripDetailsPage = () => {
   })
 
   const goBack = () => {
-    navigate("-1")
+    navigate(-1)
   }
 
   return (
     <div>
-      <h1>Trips Details</h1>
+      <h1>Detalhe Viagem</h1>
       <div>
         <p>{trip.name}</p>
         <p>{trip.description}</p>
