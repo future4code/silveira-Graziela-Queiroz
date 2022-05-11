@@ -1,11 +1,12 @@
 import React from 'react';
-import LoginPage from "../pages/LoginPage/LoginPage"
-import PaginaPost from "../pages/PaginaPost/PaginaPost"
-import PaginaFeed from "../pages/PaginaFeed/PaginaFeed"
-import TelaCadastro from "../pages/TelaCadastro/TelaCadastro";
-import ErrorPage from '../pages/ErrorPage/ErrorPage';
+import LoginPage from "../pages/loginPage/LoginPage"
+import PaginaPost from "../pages/paginaPost/PaginaPost"
+import PaginaFeed from "../pages/paginaFeed/PaginaFeed"
+import TelaCadastro from "../pages/telaCadastro/TelaCadastro";
+import ErrorPage from '../pages/errorPage/ErrorPage';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
-import Header from "..components/Header/Header";
+import Header from "../components/header/Headers";
+
 const Router = () => {
     return (
         <BrowserRouter>

@@ -1,15 +1,15 @@
 export const goToLogin = (navigate) =>{
- navigate.push("/")
+ navigate("/")
 }
 
-export const goToPost = (navigate,id) =>{
-    navigate.push(`/posts/${id}/comments`)
+export const goToPost = (navigate, id) =>{
+    navigate(`/posts/${id}/comments`)
 }
 
 export const goToFeed = (navigate) =>{
-    navigate.push("/paginafeed")
+    navigate("/paginafeed")
 }
 
 export const goToCadastro = (navigate) =>{
-    navigate.push("/telaCadastro")
+    navigate("/telaCadastro")
 }

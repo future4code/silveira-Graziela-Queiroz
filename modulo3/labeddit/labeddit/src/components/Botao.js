@@ -1,8 +1,17 @@
 import React from 'react'
+import Button from '@material-ui/core/Button'
 
-function Botao() {
+function Botao(props) {
   return (
-    <div>Botao</div>
+    <Button
+      variant="contained"
+      color={props.cor}
+      fullWidth
+      margin="normal"
+      type= {props.tipo}
+      onClick={() => props.funcao(props.parametro)}>
+      {props.nome}
+    </Button>
   )
 }
 

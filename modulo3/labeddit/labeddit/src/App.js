@@ -1,11 +1,10 @@
-
 import Router from "./routes/Router"
-import theme from './contants/theme'
-import { ThemeProvider } from "material-ui/core/styles"
+import Theme from './constantes/Theme'
+import { ThemeProvider } from "@material-ui/core/styles"
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}> 
+    <ThemeProvider theme={Theme}> 
     <Router/>
     </ThemeProvider>
   )
