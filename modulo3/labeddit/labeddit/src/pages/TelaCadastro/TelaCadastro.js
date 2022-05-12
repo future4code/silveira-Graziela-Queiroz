@@ -1,22 +1,16 @@
 import React from "react";
-import useUnProtectedPage from '../../hooks/useUnProtectedPage';
-// import logo from '../../assets/logo.png'
-// import { ScreenContainer } from './'
-import { CadastroForm } from './CadastroForm'
+import CadastroForm from './CadastroForm'
+import useUnProtectedPage from '../../hooks/useUnProtectedPage'
 // import { LogoImage } from './styled'
 
-
-
 const TelaCadastro = () => {
-    useUnProtectedPage ()
+    useUnProtectedPage()
+   
     return (
         <div>
-         
-            {/* <LogoImage src={logo} /> */}
-            {/* <SignUpForm /> */}
+            <CadastroForm/>
         </div>
     )
-
 }
 
 export default TelaCadastro

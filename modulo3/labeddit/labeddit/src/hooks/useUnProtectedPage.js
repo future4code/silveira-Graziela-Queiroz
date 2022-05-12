@@ -9,7 +9,7 @@ const useUnProtectedPage = () => {
         if (token) {
             goToFeed(navigate)
         }
-    }), [navigate]
+    }, [navigate])
 }
 
 export default useUnProtectedPage

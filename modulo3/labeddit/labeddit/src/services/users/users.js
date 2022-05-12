@@ -2,24 +2,24 @@ import axios from "axios"
 import { BASE_URL } from '../../constants/urls';
 import { goToFeed } from '../../routes/coordinator';
 
-export const login = (body, clear, navigate) => {
+export const login = (body, clear, navigate, setButtonHeader) => {
     axios.post(`${BASE_URL}/users/login`, body)
         .then((res) => {
+            alert("Login realizado com Sucesso")
             localStorage.setItem("token", res.data.token)
             clear()
             goToFeed(navigate)
+            setButtonHeader(`Logout`)
         })
         .catch((err) => {
             console.log(err)
-            alert("Erro no login")
+            alert(err.response.data.message)
         })
 }
 
 export const signUp = (body, clear, navigate) => {
-    console.log(body)
     axios.post(`${BASE_URL}/users/signup`, body)
         .then((res) => {
-            console.log(res)
             alert("Cadastro realizado com Sucesso")
             localStorage.setItem("token", res.data.token)
             clear()
@@ -29,4 +29,4 @@ export const signUp = (body, clear, navigate) => {
             alert(err.response.data.message)
         })
 }
-// export const ViewPost = (body,clear,navigate) =>
+
