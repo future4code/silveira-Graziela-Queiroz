@@ -13,10 +13,12 @@ app.post("/criarconta", (req: Request, res: Response) => {
   try {
     const { name, cpf, dataNascimento } = req.body
 
-    users.forEach(user => {
+    users.forEach((user) => {
       if (user.cpf === cpf) {
         throw new Error("CPF already exists")
       }
+    })
+
     const [dia, mes, ano] = dataNascimento.split('/') // usando metodo split , toda vez que tiver (/) para separar a data de nascto.
     let verificaIdade = 2022 - ano >= 18 ? true : false // 7 .ternário verificando se ele (a) é maior de 18 ou não.
 
