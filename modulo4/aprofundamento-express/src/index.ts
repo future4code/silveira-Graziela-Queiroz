@@ -53,7 +53,7 @@ app.post("/newtask", (request:Request, response:Response) =>{
       afazerList.push(newTask)
 
       response.status(200).send({message: afazerList})
-    })
+})
 
 
 app.listen(3003, () => {
