@@ -52,7 +52,7 @@ app.post('/user', async (req: Request, res: Response) => {
 // Exercicio 2
 // Função para pegar usuario por id
 const getUsuarioById = async (id: string): Promise<any> => {
-  const result = await connection
+  const result = await connection("Usuario")
     .select('id', 'nickname')
     .from('Usuario')
     .where('id', id)
