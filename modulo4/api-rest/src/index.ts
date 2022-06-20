@@ -18,7 +18,7 @@ app.use(cors());
 app.get("/users", (req: Request, res: Response) => {
     let codeError: number = 400;
     try {
-        if (users) { // se existir uma lista de usuario? (users)
+        if (users.length > 0) { // se existir uma lista de usuario? (users)
             res.status(200).send(users)// retorna a lista pra mim 
         } else { //se não cai no error
             codeError = 404
@@ -32,7 +32,6 @@ app.get("/users", (req: Request, res: Response) => {
 
 
 })
-
 //a) metodo GET
 //B) entidade / users
 
