@@ -1,0 +1,67 @@
+POST http://localhost:3003/user/cadastro
+Content-Type: application/json
+
+{
+	"nome": "Graziela",
+	"email": "grazi@gra.com",
+	"password": "123456",
+	"role": "normal"
+}
+
+# ###
+# # @name login
+# POST http://localhost:3003/login
+# Content-Type: application/json
+
+# {
+# 	"email": "beatriz@bia.com",
+# 	"password": "123456"
+# }
+
+# ###
+# @token = {{login.response.body.token}}
+# // perfil usuario
+
+# GET http://localhost:3003/perfil
+# Content-Type: application/json
+# Authorization: {{token}}
+
+# ###
+
+# // perfil de outro usuario
+
+# GET http://localhost:3003/user/:id
+# Content-Type: application/json
+# Authorization: {{token}}
+
+# ###
+
+# POST http://localhost:3003/receita
+# Content-Type: application/json
+# Authorization: {{token}}
+
+
+# {
+# 	"title": "Strogonoff de Carne",
+# 	"description": "Creme de Leite,catchup delicia demais!!"
+# }
+
+# // Criar receita
+
+# ###
+
+# // Pegar Receita
+
+# GET http://localhost:3003/receita:id
+# Content-Type: application/json
+# Authorization: {{token}}
+
+
+# {
+# 	"id": "id da receita",
+# 	"title": "Strogonoff de Carne",
+# 	"description": "Creme de Leite,catchup delicia demais!!"
+# 	"cratedAt": "20/12/2020"
+# }
+
+
