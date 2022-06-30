@@ -140,7 +140,7 @@ export class UserController {
 
             if (!id) {
                 res.statusCode = 401
-                throw new Error("Não autorizado, token inválido")
+                throw new Error(" token inválido")
             }
 
             //  Verificação de role, se role for diferente de normal, retorna erro de acesso negado
