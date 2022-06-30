@@ -2,11 +2,11 @@ import { ROLE_TYPE } from "../types";
 
 export class User {
     constructor(
-        private id: string,
-        private name : string,
-        private email: string,
-        private password: string,
-       private role: ROLE_TYPE
+        public id: string,
+        public name : string,
+        public email: string,
+        public password: string,
+        public role: ROLE_TYPE
     ) {}
 
     public getId(): string {

@@ -8,33 +8,33 @@ Content-Type: application/json
 	"role": "normal"
 }
 
-# ###
-# # @name login
-# POST http://localhost:3003/login
-# Content-Type: application/json
+###
+# @name login
 
-# {
-# 	"email": "beatriz@bia.com",
-# 	"password": "123456"
-# }
+POST http://localhost:3003/user/login
+Content-Type: application/json
 
-# ###
-# @token = {{login.response.body.token}}
-# // perfil usuario
+{
+	"email": "beatriz@bia.com",
+	"password": "123456"
+}
 
-# GET http://localhost:3003/perfil
-# Content-Type: application/json
-# Authorization: {{token}}
+###
+@token = {{login.response.body.token}}
+// perfil usuario
 
-# ###
+GET http://localhost:3003/user/profile
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTFkNDBkLTNjNzMtNGJkNy05OGU4LWJkMDI0NDlhMWI4YiIsInJvbGUiOiJub3JtYWwiLCJpYXQiOjE2NTY2MTY5MjQsImV4cCI6MTY1NjYxNzUyNH0.LHsL6yOdyRz4XEd9CiA_4fTHBqeU-AJCHNMpWRFDsw4
+ ###
 
-# // perfil de outro usuario
+// perfil de outro usuario
 
-# GET http://localhost:3003/user/:id
-# Content-Type: application/json
-# Authorization: {{token}}
+GET http://localhost:3003/user/:id
+Content-Type: application/json
+Authorization: {{token}}
 
-# ###
+###
 
 # POST http://localhost:3003/receita
 # Content-Type: application/json

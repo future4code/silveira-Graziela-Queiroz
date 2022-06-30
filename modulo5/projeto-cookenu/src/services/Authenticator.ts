@@ -1,4 +1,4 @@
-import { sign, verify } from "jsonwebtoken";
+vc acredita import { sign, verify } from "jsonwebtoken";
 import { authenticationData } from "../types";
 import dotenv from "dotenv";
 
