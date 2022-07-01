@@ -5,6 +5,7 @@ import { Authenticator } from "../services/Authenticator";
 import { GenerateID } from "../services/GenerateID";
 import { HashManager } from "../services/HashManager";
 import { authenticationData, ROLE_TYPE } from "../types";
+//import {moment} from "moment" 
 
 
 export class UserController {
@@ -122,26 +123,17 @@ export class UserController {
         }
     }
 
-
-
-
-    public getUserProfileId = async (req: Request, res: Response) => {
+    public getUserProfile = async (req: Request, res: Response) => {
         try {
-            const id = req.params.id
             const token = req.headers.authorization as string
 
             if (!token) {
                 res.statusCode = 401
-                throw new Error("Insira um token")
+                throw new Error("token inválido ")
             }
 
             const authenticator = new Authenticator()
             const tokenData = authenticator.getTokenData(token) as authenticationData
-
-            if (!id) {
-                res.statusCode = 401
-                throw new Error(" token inválido")
-            }
 
             //  Verificação de role, se role for diferente de normal, retorna erro de acesso negado
             if (tokenData.role !== ROLE_TYPE.NORMAL) {
@@ -177,6 +169,57 @@ export class UserController {
         }
     }
 
+
+    public getUserProfileId = async (req: Request, res: Response) => {
+        try {
+            const id = req.params.id
+            const token = req.headers.authorization as string
+
+            if (!token) {
+                res.statusCode = 401
+                throw new Error("token inválido ")
+            }
+
+            const authenticator = new Authenticator()
+            const tokenData = authenticator.getTokenData(token) as authenticationData
+
+            if (!id) {
+                res.statusCode = 400
+                throw new Error(" não existe este ID")
+            }
+
+
+            //  Verificação de role, se role for diferente de normal, retorna erro de acesso negado
+            if (tokenData.role !== ROLE_TYPE.NORMAL) {
+                res.statusCode = 403
+                throw new Error("Não autorizado, role inválido, precisa ser normal")
+            }
+            console.log(tokenData)
+            const userDB = new UserDatabase()
+
+            const user = await userDB.getUserById(tokenData.id)
+
+
+            if (!user) {
+                res.statusCode = 400
+                throw new Error("Usuário não existe")
+            }
+
+            //  Envio de dados do usuário, agora com o role
+            res.status(200).send({
+                id: user.id,
+                nome: user.name,
+                email: user.email,
+                role: user.role
+            })
+
+        } catch (error: any) {
+            if (res.statusCode === 200) {
+                res.status(500).send({ message: error.message })
+            } else {
+                res.send({ message: error.message })
+            }
+        }
+    }
+
 }
-
-

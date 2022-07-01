@@ -35,6 +35,7 @@ export class UserDatabase extends BaseDatabase {
             throw new Error(error.sqlMessage || error.message)
         }
     }
+
     public getUserById = async (id: string): Promise<User | undefined> => {
         const result = await BaseDatabase.connection()
             .select("*")
@@ -43,5 +44,3 @@ export class UserDatabase extends BaseDatabase {
         return result[0]
     }
 }
-
-
