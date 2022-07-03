@@ -25,42 +25,29 @@ Content-Type: application/json
 
 GET http://localhost:3003/user/profile
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTFkNDBkLTNjNzMtNGJkNy05OGU4LWJkMDI0NDlhMWI4YiIsInJvbGUiOiJub3JtYWwiLCJpYXQiOjE2NTY3MDExNzQsImV4cCI6MTY1NjcwMTc3NH0.EP82W2DhENnnoya57rVmLuxmZCFAdDp6FTaAGlVRt-g
- ###
+Authorization: {{token}}
 
 // perfil de outro usuario
 ###
-GET http://localhost:3003/user/:id
+GET http://localhost:3003/user/b26bbea7-b3ec-4f5e-83d1-7ddf64cab5b4
 Content-Type: application/json
 Authorization: {{token}}
 
 ###
-
-# // Criar receita
-
+// Criar receita
 POST http://localhost:3003/recipe
 Content-Type: application/json
 Authorization: {{token}}
 
-
 {
-	"title": "Strogonoff de Carne",
-	"description": " Depois da carne refogada, misture o Creme de Leite,catchup,mostarda e sirva o Strogonoff delicia demais!!"
+	"titulo": "Strogonoff de Carne",
+	"descricao": "Depois da carne refogada, misture o Creme de Leite, catchup, mostarda e sirva o Strogonoff delicia demais!!"
 }
 
-
-# // Pegar Receita
-
-GET http://localhost:3003/receita/:id
+###
+// Pegar Receita
+GET http://localhost:3003/recipe/1b83c253-60cf-4519-9261-0f0af60d3fb2
 Content-Type: application/json
 Authorization: {{token}}
 
-
-{
-	"id": "id da receita",
-	"title": "Strogonoff de Carne",
-	"description": " Depois da carne refogada, misture o Creme de Leite,catchup,mostarda e sirva o Strogonoff delicia demais!!"
-	"cratedAt": "20/12/2020"
-}
-
-
+# @id = 1b83c253-60cf-4519-9261-0f0af60d3fb2

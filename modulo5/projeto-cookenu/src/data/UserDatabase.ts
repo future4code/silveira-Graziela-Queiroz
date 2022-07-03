@@ -37,10 +37,15 @@ export class UserDatabase extends BaseDatabase {
     }
 
     public getUserById = async (id: string): Promise<User | undefined> => {
-        const result = await BaseDatabase.connection()
-            .select("*")
-            .from("cadastro")
-            .where({ id })
-        return result[0]
+        try {
+            const result = await BaseDatabase.connection()
+                .select("id"," nome", "email")
+                .from(UserDatabase.tableName)
+                .where({ id })
+            return result[0]
+
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
     }
 }

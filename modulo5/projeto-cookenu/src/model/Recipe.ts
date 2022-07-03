@@ -3,9 +3,8 @@ export class Recipe {
         public id: string,
         public titulo : string,
         public descricao: string,
-        public modo_de_preparo: string,
         public data_de_criacao: Date,
-        public cadastro_id: string,
+        public cadastro_id: string
     ) {}
 
     public getId(): string {
@@ -18,10 +17,6 @@ export class Recipe {
 
     public getDescricao(): string {
         return this.descricao;
-    }
-
-    public getModo_de_Preparo(): string {
-        return this.modo_de_preparo;
     }
     
     public getData_de_criacao(): Date {

@@ -7,7 +7,6 @@ import { HashManager } from "../services/HashManager";
 import { authenticationData, ROLE_TYPE } from "../types";
 //import {moment} from "moment" 
 
-
 export class UserController {
 
     public createUser = async (req: Request, res: Response) => {
@@ -15,50 +14,45 @@ export class UserController {
             // - inclui a coluna role no body da requisição
             const { nome, email, password, role } = req.body
 
+            //validaçoes para fazer o cadastro
             if (!nome || !email || !password || !role) {
                 res.statusCode = 422
                 throw new Error("Dados não confere, passe nome, email, password e role")
             }
-
             if (email.indexOf("@") === -1) {
                 res.statusCode = 400
                 throw new Error("Email não confere, acrescente @")
             }
-
             if (password.length < 6) {
                 res.statusCode = 400
                 throw new Error("A Senha deve conter no minimo 6 caracteres")
             }
-
             if (role !== "normal" && role !== "admin") {
                 res.statusCode = 400
                 throw new Error("Role inválida, insira normal ou admin")
             }
-
-            const id: string = new GenerateID().id()
-
-            // - Criação de hash da senha
-            const senhaCripto = new HashManager().createHash(password)
+           
+            const senhaCripto = new HashManager().createHash(password) // - Criação de hash da senha
+            const id: string = new GenerateID().id() // gerando ID automaticamente
 
             // - criar nova instância de User, Obs. precisa da mesma estrutura do banco
             const newUser = new User(id, nome, email, senhaCripto, role)
 
             const userDB = new UserDatabase()
-
             await userDB.createUser(newUser)
+
+            const user = await userDB.getUserByEmail(email)
+            if (user) {
+                res.statusCode = 400
+                throw new Error("Usuário já existe")
+            }
 
             const payload: authenticationData = {
                 id: newUser.getId(),
                 role: newUser.getRole()
             }
+
             const token = new Authenticator().generateToken(payload)
-
-            const user = await userDB.getUserByEmail(email)
-
-            if (user) {
-                res.statusCode = 400
-                throw new Error("Usuário já existe")
-            }
 
             res.status(200).send({
                 message: "Usuário logado com sucesso",
@@ -75,7 +69,6 @@ export class UserController {
         }
     }
 
-
     public login = async (req: Request, res: Response) => {
         try {
             const { email, password } = req.body
@@ -86,7 +79,6 @@ export class UserController {
             }
 
             const userDB = new UserDatabase()
-
             const user = await userDB.getUserByEmail(email)
 
             if (!user) {
@@ -96,7 +88,6 @@ export class UserController {
 
             //  - Comparação de hash da senha
             const passwordIsCorrect = new HashManager().compareHash(password, user.getPassword())
-            console.log(passwordIsCorrect)
 
             if (!passwordIsCorrect) {
                 res.statusCode = 400
@@ -126,25 +117,22 @@ export class UserController {
     public getUserProfile = async (req: Request, res: Response) => {
         try {
             const token = req.headers.authorization as string
+            const authenticator = new Authenticator()
+            const tokenData = authenticator.getTokenData(token) as authenticationData
 
             if (!token) {
                 res.statusCode = 401
                 throw new Error("token inválido ")
             }
-
-            const authenticator = new Authenticator()
-            const tokenData = authenticator.getTokenData(token) as authenticationData
-
             //  Verificação de role, se role for diferente de normal, retorna erro de acesso negado
             if (tokenData.role !== ROLE_TYPE.NORMAL) {
                 res.statusCode = 403
                 throw new Error("Não autorizado, role inválido, precisa ser normal")
             }
-            console.log(tokenData)
+
             const userDB = new UserDatabase()
 
             const user = await userDB.getUserById(tokenData.id)
-
 
             if (!user) {
                 res.statusCode = 400
@@ -152,12 +140,7 @@ export class UserController {
             }
 
             //  Envio de dados do usuário, agora com o role
-            res.status(200).send({
-                id: user.id,
-                nome: user.name,
-                email: user.email,
-                role: user.role
-            })
+            res.status(200).send(user)
 
         } catch (error: any) {
             if (res.statusCode === 200) {
@@ -165,10 +148,8 @@ export class UserController {
             } else {
                 res.send({ message: error.message })
             }
-
         }
     }
-
 
     public getUserProfileId = async (req: Request, res: Response) => {
         try {
@@ -179,26 +160,13 @@ export class UserController {
                 res.statusCode = 401
                 throw new Error("token inválido ")
             }
-
-            const authenticator = new Authenticator()
-            const tokenData = authenticator.getTokenData(token) as authenticationData
-
             if (!id) {
                 res.statusCode = 400
                 throw new Error(" não existe este ID")
             }
 
-
-            //  Verificação de role, se role for diferente de normal, retorna erro de acesso negado
-            if (tokenData.role !== ROLE_TYPE.NORMAL) {
-                res.statusCode = 403
-                throw new Error("Não autorizado, role inválido, precisa ser normal")
-            }
-            console.log(tokenData)
             const userDB = new UserDatabase()
-
-            const user = await userDB.getUserById(tokenData.id)
-
+            const user = await userDB.getUserById(id)
 
             if (!user) {
                 res.statusCode = 400
@@ -206,12 +174,7 @@ export class UserController {
             }
 
             //  Envio de dados do usuário, agora com o role
-            res.status(200).send({
-                id: user.id,
-                nome: user.name,
-                email: user.email,
-                role: user.role
-            })
+            res.status(200).send(user)
 
         } catch (error: any) {
             if (res.statusCode === 200) {
