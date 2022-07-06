@@ -1,8 +1,5 @@
-import { sign, verify } from "jsonwebtoken";
-import { authenticationData } from "../types";
-import dotenv from "dotenv";
-
-dotenv.config()
+import { authenticationData } from "../types/authData";
+import { sign, verify } from "jsonwebtoken"
 
 export class Authenticator {
 
@@ -10,13 +7,13 @@ export class Authenticator {
         const token = sign(
             payload,
             process.env.JWT_KEY as string,
-            { expiresIn: process.env.JWT_EXPIRES_IN }
+            { expiresIn: process.env.JWT_EXPIRES_IN as string }
         )
 
         return token
     }
 
-    getTokenData = (token: string) => {
+    getTokenData = (token: string): authenticationData => {
         const payload = verify(
             token,
             process.env.JWT_KEY as string
@@ -25,3 +22,15 @@ export class Authenticator {
         return payload as authenticationData
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,23 +1,23 @@
-POST http://localhost:3003/user/signup
+POST http://localhost:3003/signup
 Content-Type: application/json
 
 {
 	"nome": "graziela",
-    "email" "grazi@gmail.com.br",
-	"password": "123456789",
-	"role": "admin"
+    "email": "grazi@gmail.com.br",
+	"password": "543210",
+
 }
 
 ###
 
-# # @name login
-# POST http://localhost:3003/user/login
-# Content-Type: application/json
+# @name login
+POST http://localhost:3003/user/login
+Content-Type: application/json
 
-# {
-# 	"email": "mu@labenu.com.br",
-# 	"password": "123456789"
-# }
+{
+	"email": "ro@labenu.com.br",
+	"password": "543210"
+}
 
 ###
 

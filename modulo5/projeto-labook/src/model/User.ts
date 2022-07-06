@@ -1,12 +1,9 @@
-//import { ROLE_TYPE } from "../types";
-
-export default class User {
+export class User {
     constructor(
         private id: string,
         private name:string,
         private email: string,
         private password: string,
-        //private role: ROLE_TYPE
     ) {}
 
     public getId(): string {
@@ -17,7 +14,6 @@ export default class User {
         return this.name;
     }
 
-
     public getEmail(): string {
         return this.email;
     }
@@ -25,10 +21,6 @@ export default class User {
     public getPassword(): string {
         return this.password;
     }
-
-    // public getRole(): string {
-    //     return this.role;
-    // }
     
 }
 
@@ -43,12 +35,3 @@ export default class User {
 
 
 
-
-// export default class User{
-//     construtor(
-//         private id: string,
-//         private name: string,
-//         private email:string,
-//         private password:string
-//     ){}
-// }
