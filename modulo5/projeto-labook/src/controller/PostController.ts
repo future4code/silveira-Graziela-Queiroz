@@ -22,9 +22,8 @@ createPost = async (req: Request, res: Response) => {
             type,
             token
         }
-        const newinput = await this.postBussiness.
-        const token = await this.PostController.createPost(input)
-
+        const newinput = await this.postBussiness.createPost(input)
+       
         res.status(201).send({
             message: "Usuario logado com sucesso !!",
             token
@@ -41,4 +40,17 @@ createPost = async (req: Request, res: Response) => {
 
 }
 
+getPostId = async ( req: Request ,) => {
+    try {
+        const token = 
+        const postId = req.
+        
 
+
+
+
+
+    } catch (error) {
+        
+    }
+}
