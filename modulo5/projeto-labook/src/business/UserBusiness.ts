@@ -3,6 +3,7 @@ import { User } from "../model/User";
 import { Authenticator } from "../Services/Authenticator";
 import { HashManager } from "../Services/HashManager";
 import { IdGenerator } from "../Services/IdGenerator";
+import { login } from "../types/login";
 import { SignUp } from "../types/SignUp";
 
 export class UserBusiness {
@@ -56,16 +57,17 @@ export class UserBusiness {
             //CRIAR TOKEN PASSANDO ID COMO PARÂMETRO
             const token = this.authenticator.generateToken({ id, email })
     
-            //RETORNA O TOKEN 
             return token
+            
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
      //========================================================================
     }
 
-    login = async (email: string, password: string) => {
+    login = async (input: login) => {
         try {
+            const { email, password } = input
 
             if (!email  || !password) {
                 throw new Error("Por gentileza preencha os campos acima corretamente!")
@@ -75,14 +77,14 @@ export class UserBusiness {
             if (!userData) {
                 throw new Error("Usuario não encontrado")
             }
-
-            const confereSenha = this.hashManager.compareHash(password, userData.getPassword())
+           
+            const confereSenha = this.hashManager.compareHash(password, userData.password)
             if (!confereSenha) {
                 throw new Error("Senha invalida")
             }
 
             //CRIAR TOKEN PASSANDO ID COMO PARÂMETRO
-            const token = this.authenticator.generateToken({ id: userData.getId(), email: userData.getEmail() })
+            const token = this.authenticator.generateToken({ id: userData.id, email: userData.email })
 
             return token
 

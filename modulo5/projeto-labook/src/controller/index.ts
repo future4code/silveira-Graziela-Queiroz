@@ -1,4 +1,4 @@
-import { app } from "./app"
+import { app } from "../Controller/app"
 import { UserBusiness } from "../business/UserBusiness"
 import { Authenticator } from "../Services/Authenticator"
 import { HashManager } from '../Services/HashManager';

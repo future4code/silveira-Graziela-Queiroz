@@ -1,7 +1,6 @@
 {
   "name": "projeto-labook",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev ./src/Controller/index.ts",
@@ -28,5 +27,9 @@
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.7.4",
     "uuid": "^8.3.2"
-  }
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12"
+  },
+  "description": ""
 }

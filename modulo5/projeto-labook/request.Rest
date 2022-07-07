@@ -2,30 +2,38 @@ POST http://localhost:3003/signup
 Content-Type: application/json
 
 {
-	"nome": "graziela",
+	"name": "graziela",
     "email": "grazi@gmail.com.br",
-	"password": "543210",
-
-}
-
-###
-
-# @name login
-POST http://localhost:3003/user/login
-Content-Type: application/json
-
-{
-	"email": "ro@labenu.com.br",
 	"password": "543210"
 }
 
 ###
 
-# @token = {{login.response.body.token}}
+# @name login
+POST http://localhost:3003/login
+Content-Type: application/json
 
-# GET http://localhost:3003/user/profile
-# Content-Type: application/json
-# Authorization: {{token}}
+{
+	"email": "grazi@gmail.com.br",
+	"password": "543210"
+}
 
 ###
+
+@token = {{login.response.body.token}}
+
+GET http://localhost:3003/profile
+Content-Type: application/json
+Authorization: 
+
+{
+	"photo": "",
+    "description": "",
+	"createDate": ""
+	"type": "NORMAL"
+}
+
+
+
+##
 

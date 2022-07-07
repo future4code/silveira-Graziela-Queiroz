@@ -16,7 +16,7 @@ export class UserDatabase extends BaseDatabase {
         }
     }
 
-    findByEmail = async (email: string): Promise<User | undefined> => {
+    findByEmail = async (email: string) => {
         try {
             const queryresult = await UserDatabase.connection()
             .select("*")
@@ -30,31 +30,20 @@ export class UserDatabase extends BaseDatabase {
         }
     }
 
-//     // Criar post
-//     createUser = async (login: string): Promise<void> => {
-//         try {
-//             const queryresult =  login = await UserDatabase 
-//             .connection(this.tableName)
-//             .select()
-//             .where({ login })
+    // Criar post
 
-//             return queryresult[0]
-                
-//         } catch (error: any) {
-//             throw new Error(error.sqlMessage || error.message)
-//         }
-// }
-// Buscar um post por id
+    // Buscar um post por id
 
-// postUserById = async (id: string): Promise<User | undefined> => {
-//     try {
-//         const result = await BaseDatabase.connection()
-//             .select("*")
-//             .from(UserDatabase.TABLE_NAME)
-//             .where({ id })
+ postUserById = async (id: string): Promise<User | undefined> => {
+    try {
+        const result = await BaseDatabase.connection()
+            .select("*")
+            .from(UserDatabase.TABLE_NAME)
+            .where({ id })
 
-//         return result[0] ? new User(result[0].id, result[0].name, result[0].email, result[0].password, result[0].role) : undefined
-//     } catch (error: any) {
-//         throw new Error(error.sqlMessage || error.message)
-//     }
+        return result[0] ? new User(result[0].id, result[0].name, result[0].email, result[0].password, result[0].role) : undefined
+    } catch (error: any) {
+        throw new Error(error.sqlMessage || error.message)
+    }
+  }
 }
