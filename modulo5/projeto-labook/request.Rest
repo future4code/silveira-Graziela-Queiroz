@@ -2,8 +2,8 @@ POST http://localhost:3003/signup
 Content-Type: application/json
 
 {
-	"name": "graziela",
-    "email": "grazi@gmail.com.br",
+	"name": "natalia",
+    "email": "nathy@gmail.com.br",
 	"password": "543210"
 }
 
@@ -14,7 +14,7 @@ POST http://localhost:3003/login
 Content-Type: application/json
 
 {
-	"email": "grazi@gmail.com.br",
+	"email": "nathy@gmail.com.br",
 	"password": "543210"
 }
 
@@ -27,16 +27,16 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-	"photo": "foto4",
-    "description": "descricao4",
-	"type": "NORMAL"
+	"photo": "https://sm.ign.com/t/ign_br/screenshot/default/blue-bayou-in-cinema-character-banners-black-widow-brazil_kzgq.600.jpg",
+    "description": "Viuva Negra",
+	"type": "EVENT"
 }
 
 ###
 
-GET http://localhost:3003/post/951ffb00-d1e6-4aef-b925-1a87f9280310
+GET http://localhost:3003/post/85436df1-f6bd-4d9e-872a-4bf6ace970bb
 Content-Type: application/json
-# Authorization: {{token}}
+Authorization: {{token}}
 
 
 

@@ -1,3 +1,4 @@
 export type postId = {
-    id: string
+    id: string,
+    token: string
 }

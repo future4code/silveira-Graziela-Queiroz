@@ -53,16 +53,16 @@ export class PostBusiness {
      
     }
 
-    getPostById = async (postId: string) => {
+    getPostById = async (postId: string, token: string) => {
         try{
-            // const postTokenData = this.authenticator.getTokenData(token)
+            const postTokenData = this.authenticator.getTokenData(token)
 
-            // if (!token) {
-            //     throw new Error("insira um token !")
-            // }
-            // if (!postTokenData) {
-            //     throw new Error(" token inválido !")
-            // }
+            if (!token) {
+                throw new Error("insira um token !")
+            }
+            if (!postTokenData) {
+                throw new Error(" token inválido !")
+            }
             if (!postId) {
                 throw new Error("insira o id do post !")
             }

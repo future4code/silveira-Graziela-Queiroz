@@ -37,10 +37,10 @@ export class PostController{
 
      getPostById = async ( req: Request, res:Response) => {
         try {
-            const token = req.headers.authotization as string
+            const token = req.headers.authorization as string
             const postId = req.params.id
 
-            const post = await this.postBussiness.getPostById(postId)
+            const post = await this.postBussiness.getPostById(postId, token)
 
            res.status(200).send({post})
 
