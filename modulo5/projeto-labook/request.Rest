@@ -22,18 +22,22 @@ Content-Type: application/json
 
 @token = {{login.response.body.token}}
 
-GET http://localhost:3003/profile
+POST http://localhost:3003/post
 Content-Type: application/json
-Authorization: 
+Authorization: {{token}}
 
 {
-	"photo": "",
-    "description": "",
-	"createDate": ""
+	"photo": "foto4",
+    "description": "descricao4",
 	"type": "NORMAL"
 }
 
+###
+
+GET http://localhost:3003/post/951ffb00-d1e6-4aef-b925-1a87f9280310
+Content-Type: application/json
+# Authorization: {{token}}
 
 
-##
+
 

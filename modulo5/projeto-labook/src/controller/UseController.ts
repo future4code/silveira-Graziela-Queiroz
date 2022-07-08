@@ -10,22 +10,14 @@ export class UserController {
         private userBussiness: UserBusiness
     ) { }
 
-    //O método constructor obriga quem chamar o UserController há criar a instância
-    // só no controller só ele vai ter rest e req
-
     signUp = async (req: Request, res: Response) => {
         try {
-
             const { name, email, password } = req.body;
-
-            //Estruturação do objeto que seria o mesmo acima.(Tratamento dos dados acima)  
             const input: SignUp = {
                 name,
                 email,
                 password
             }
-            //signupInput é um objeto que vai tranferir informações dentro do código entre as camadas. 
-            //UserController precisa do UserBusiness vai usar UserData
             const token = await this.userBussiness.signUp(input)
 
             res.status(201).send({
@@ -46,12 +38,10 @@ export class UserController {
     login = async (req: Request, res: Response) => {
         try {
             const { email, password } = req.body;
-
             const input: login = {
                 email,
                 password
             }
-
             const token = await this.userBussiness.login(input)
 
             res.status(201).send({

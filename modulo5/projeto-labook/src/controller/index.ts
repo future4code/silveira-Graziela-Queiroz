@@ -5,6 +5,9 @@ import { HashManager } from '../Services/HashManager';
 import { IdGenerator } from '../Services/IdGenerator';
 import { UserDatabase } from "../data/UserDataBase";
 import { UserController } from "./UseController";
+import { PostBusiness } from "../business/PostBusiness";
+import { PostController } from "./PostController";
+import { PostDatabase } from "../data/PostDatabase";
 
 // estanciando business no index
 const userController = new UserController(
@@ -15,7 +18,15 @@ const userController = new UserController(
         new Authenticator()
    )
 )
-     
+
+const postController = new PostController(
+   new PostBusiness(
+      new PostDatabase(),
+      new IdGenerator(),
+      new Authenticator()
+   )   
+)
+   
 //O index chama o UserController.  Aqui passamos como parâmetro UserBusiness.
 
 
@@ -26,6 +37,6 @@ const userController = new UserController(
 
  // post
 
- app.post("/post",postController.createPost)
- app.get("/post:id",)
+ app.post("/post", postController.createPost)
+ app.get("/post/:id", postController.getPostById)
 
