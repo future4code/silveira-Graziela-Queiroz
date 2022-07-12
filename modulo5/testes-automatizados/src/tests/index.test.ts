@@ -8,3 +8,5 @@ describe("testando o arquivo index.js", () => {
 
         expect(isEven(3)).toBe(false)
     })
+
+})    

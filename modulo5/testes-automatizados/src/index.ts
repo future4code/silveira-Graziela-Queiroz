@@ -4,7 +4,7 @@ import { config } from 'dotenv'
 config()
 
 export const isEven = (integer: number): any => {
-   return integer % 2 === 0 
+   return integer % 2 === 0  
  }
 
 export const connection = knex({
