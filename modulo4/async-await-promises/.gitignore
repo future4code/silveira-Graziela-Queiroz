@@ -1,4 +1,10 @@
 node_modules
+<<<<<<< servicos-backend
+package-lock.json
+build
+.env
+=======
 build
 package.json
 .env
+>>>>>>> master
