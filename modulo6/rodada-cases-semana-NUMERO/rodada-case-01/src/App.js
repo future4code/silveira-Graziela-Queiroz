@@ -1,10 +1,14 @@
+//import { ThemeProvider} from "@mui/material";
+import React from "react";
+import ConcursoLoteria from "./Pages/ConcursoLoteria";
+
 
 function App() {
+
   return (
-  <div>
-    <Router/>
-  </div>
    
+      <ConcursoLoteria></ConcursoLoteria>
+
   );
 }
 
