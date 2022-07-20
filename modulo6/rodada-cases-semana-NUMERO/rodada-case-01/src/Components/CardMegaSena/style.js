@@ -1,9 +1,9 @@
-import {styled} from "styled-components";
+import styled from 'styled-components';
 
 
 export const CardStyledNumber = styled.div `
-    width: 6.9375vw;
-    height: 6.9375vw;
+    width: 4vw;
+    height:4vw;
     border-radius: 50%;
     background: rgb(255, 255, 255);
     display: flex;
@@ -16,6 +16,8 @@ export const CardStyledNumber = styled.div `
     font-weight: 700;
     font-size: 1.688rem;
     line-height: 33px;
+    border-bottom-style: outset;
+    background: aquamarine;
 `
 
 
