@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { BASE_URL } from '../Constants/url';
 import axios from 'axios';
+import { Card } from '@mui/material';
 // import CardMegaSena from '../Components/CardMegaSena';
 //import {useParams} from 'react-router-dom'
 
+// cria os estados a serem usados para armazenar a requisição.
 const ConcursoLoteria = () => {
   const [result, setResult] = useState([]);
   const [concursos, setConcursos] = useState([]);
   const [concursosId, setConcursosId] = useState([]);
+  const [valueSelect, setValueSelect] = useState([])
 
-
-  const getLoterias = () => {
-    axios.get(`${BASE_URL}/loterias`)
+  // requisições abaixo
+  const getLoterias = async () => {
+    await axios.get(`${BASE_URL}/loterias`)
       .then((res) => {
         setResult(res.data);
       })
@@ -20,8 +23,8 @@ const ConcursoLoteria = () => {
       })
   }
 
-  const getConcursos = () => {
-    axios.get(`${BASE_URL}/loterias-concursos`)
+  const getConcursos = async () => {
+    await axios.get(`${BASE_URL}/loterias-concursos`)
       .then((res) => {
         setConcursos(res.data);
       })
@@ -30,10 +33,9 @@ const ConcursoLoteria = () => {
       });
   }
 
-  const getconcursosById = () => {
-    axios.get(`${BASE_URL}/concursos/2359`)
+  const getConcursosById = async () => {
+    await axios.get(`${BASE_URL}/concursos/${idConcurso.concursoId}`)
       .then((res) => {
-        console.log(res.data)
         setConcursosId(res.data)
       })
       .catch((err) => {
@@ -41,41 +43,47 @@ const ConcursoLoteria = () => {
       });
   }
 
-  // useEffect  serve para que a função gerloterias seja chamada, toda vez que o usuario entrar na pagina feed eu vou conseguir chamar a função gerloterias.
+  // useEffect  serve para que a função seja chamada toda vez que o usuario entrar na pagina.(getloteria,getconcursos,getconcursoById)
   useEffect(() => {
     getLoterias();
     getConcursos();
-    getconcursosById();
   }, []);
 
   // map traz o nome do concurso
   const loterias = result.map((lot) => {
     return (
-      <option key={lot.id}>{lot.nome}</option>
+      <option key={lot.id} value={lot.id}>{lot.nome}</option>
     )
+  });
+  
+  const onChangeHandler = (e) => {
+    setValueSelect(e.target.value)
+
+    if(concursos.length > 0){
+       getConcursosById();
+    }
+  }
+
+  const idConcurso = concursos?.find(el => el.loteriaId == valueSelect)
+  console.log('CONCURSO SELECIONADO', idConcurso)
+
+  console.log('CONCURSO', concursosId)
+
+  // Traz o concurso pelo Id( loteria e id  ex; MEGA-SENA CONCURSO "01")
+  const numerosSorteio = concursosId.numero?.map(element => {
+   console.log('numeros', element)
   });
 
-  // map traz o concurso pelo id ( loteria e id  ex; MEGA-SENA CONCURSO "01")
-  const concurso = concursos.map((conc) => {
-    return (
-      <p>{conc.concursoId}</p>
-    )
-  });
-
-  // Traz o concurso pelo Id
-  const idConcurso = concursosId.filter((lot) => {
-    return (
-      <p>{lot.numeros}</p>
-    )
-  });
 
 
   return (
     <div>
-      <select>{loterias}</select>
-
+      <select name='valueSelect' onChange={onChangeHandler} value={valueSelect}>
+        <option value="" disabled>Escolha uma loteria</option>
+        {loterias}
+      </select>
       <div>
-        {idConcurso}
+        {numerosSorteio}
       </div>
     </div>
   )
