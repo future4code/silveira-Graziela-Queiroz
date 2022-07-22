@@ -30,6 +30,7 @@ export const DivGeral = styled.div`
 
 // somente div verde da mega-sena
 export const DivColor = styled.div`
+    background: radial-gradient(20% 100% at right, #EFEFEF 50%, ${(p) => getBackground(p.loteria)} 50.1%);
     background-color:${(p) => getBackground(p.loteria)};
     width: 40vw;
     height: 100vh;
@@ -41,7 +42,7 @@ export const DivColor = styled.div`
 
 // seletor da mega-sena
 export const Select = styled.select`
-    width: 155px;
+    width: 210px;
     height: 36px;
     border: aliceblue;
     border-radius: 15px;
@@ -49,7 +50,7 @@ export const Select = styled.select`
     text-transform: uppercase;
     font-family: Montserrat,sans-serif;
 `;
-
+// largura da area laranja (div)
 export const P = styled.p`
     margin: 0;
     font-size: 25px;
@@ -69,7 +70,7 @@ export const DivCinza = styled.div`
     width: 100vw;
     height: 100vh;
 `;
-
+// div só das bolinhas
 export const DivCard = styled.div`
     width: 100%;
     height: 6.9375vw;
@@ -78,6 +79,10 @@ export const DivCard = styled.div`
     justify-content: space-evenly;
     flex-wrap: wrap;
 `;
+
+// @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+// 	/* aqui colocamos o CSS para celulares */
+// }
 
 
 
