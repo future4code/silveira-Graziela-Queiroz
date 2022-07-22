@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const CardStyledNumber = styled.div `
     width: 5.5vw;
     height: 5.5vw;

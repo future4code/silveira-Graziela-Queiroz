@@ -22,7 +22,7 @@ const ConcursoLoteria = () => {
         console.log(err)
       })
   }
-
+  
   const getConcursos = async () => {
     await axios.get(`${BASE_URL}/loterias-concursos`)
       .then((res) => {
