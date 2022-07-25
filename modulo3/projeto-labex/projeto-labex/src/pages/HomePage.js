@@ -54,6 +54,9 @@ export const HomePage = () => {
   const goToAdmPage = () => {
     navigate("/login")
   }
+  const pudim = () => {
+     navigate("/coxinha")
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -105,6 +108,12 @@ export const HomePage = () => {
               sx={{ mt: 3, mb: 2 }}
             >
               AREA ADMINISTRATIVA
+            </Button>
+            <Button
+            color="error"
+            onClick={pudim}
+            >
+            Laranja
             </Button>
           </Box>
         </Box>
