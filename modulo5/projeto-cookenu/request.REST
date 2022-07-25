@@ -1,0 +1,53 @@
+POST http://localhost:3003/user/cadastro
+Content-Type: application/json
+
+{
+	"nome": "Graziela",
+	"email": "grazi@gra.com",
+	"password": "123456",
+	"role": "normal"
+}
+
+###
+# @name login
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+	"email": "beatriz@bia.com",
+	"password": "123456"
+}
+
+###
+@token = {{login.response.body.token}}
+// perfil usuario
+
+GET http://localhost:3003/user/profile
+Content-Type: application/json
+Authorization: {{token}}
+
+// perfil de outro usuario
+###
+GET http://localhost:3003/user/b26bbea7-b3ec-4f5e-83d1-7ddf64cab5b4
+Content-Type: application/json
+Authorization: {{token}}
+
+###
+// Criar receita
+POST http://localhost:3003/recipe
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"titulo": "Strogonoff de Carne",
+	"descricao": "Depois da carne refogada, misture o Creme de Leite, catchup, mostarda e sirva o Strogonoff delicia demais!!"
+}
+
+###
+// Pegar Receita
+GET http://localhost:3003/recipe/1b83c253-60cf-4519-9261-0f0af60d3fb2
+Content-Type: application/json
+Authorization: {{token}}
+
+# @id = 1b83c253-60cf-4519-9261-0f0af60d3fb2
