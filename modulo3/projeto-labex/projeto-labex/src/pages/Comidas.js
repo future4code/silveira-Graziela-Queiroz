@@ -1,6 +1,4 @@
 import React from 'react';
-// import axios from 'axios';
-// import Home from './pages/HomePage'
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,52 +10,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
 
-//   const GlobalStyle = createGlobalStyle`
-//   * {
-//   box-sizing: border-box;
-//   padding: 0;
-//   margin: 0;
-// }
-//   `
-//   const H1 = styled.div`
-//   display: block;
-//   font-size: 6em;
-//   color: #FA007D;
-//   margin-left: 80px;
-//   text-shadow: #0602FC 0.1em 0.1em 0.3em;
-//   padding: 50px;
-//   `
-//   const Container = styled.div ` 
-   
-//   width: 100%;
-//   height: 100vh;
-//    `
-//   const BtnAdm = styled.div`
-//   margin-bottom: 15px;
-//   height: 40px;
-//   padding: 0px 20px;
-//   border-radius: 20px;
-//   border: none;
-//   color: white;
-//   font-size: 16px;
-//   background-color: slategray;
-//   min-width: 100px;
-  // `
-export const HomePage = () => {
+export const Laranja = () => {
   const navigate = useNavigate()
 
 
   const goToTripPage = () => {
     navigate("/trips/list")
   }
-
-  const goToAdmPage = () => {
-    navigate("/login")
-  }
-  const pudim = () => {
-     navigate("/coxinha")
-  }
-
+ 
   return (
     <ThemeProvider theme={theme}>
     <Grid container component="main" sx={{ height: '100vh' }}>
@@ -88,7 +48,7 @@ export const HomePage = () => {
           }}
         >
           <Typography component="h1" variant="h2" sx={{color: "orangered"}}>
-            LabeX
+            Titulo
           </Typography>
           <Box noValidate sx={{ mt: 1 }}>
             <Button
@@ -98,23 +58,9 @@ export const HomePage = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              VER Viagens
+              Celular
             </Button>
-            <Button
-            color="error"
-              onClick={goToAdmPage}
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              AREA ADMINISTRATIVA
-            </Button>
-            <Button
-            color="error"
-            onClick={pudim}
-            >
-            Laranja
-            </Button>
+            
           </Box>
         </Box>
       </Grid>
