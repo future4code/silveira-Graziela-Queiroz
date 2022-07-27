@@ -1,15 +1,21 @@
+//import { PropaneRounded } from '@mui/icons-material';
 import React from 'react'
-import { CardStyleMovie } from './style';
+import { CardStyleMovie, P } from './style';
+import { useNavigate } from 'react-router-dom'
 
 const CardMovie = (props) => {
+  const navigate = useNavigate()
+  
+  const irParaDetalhes = (id) => {
+    navigate(`/detalheDosFilmes/${id}`)
+}
+
   return (
-    <div>
-      <CardStyleMovie>
-        {props.movie}
+      <CardStyleMovie onClick={()=>irParaDetalhes(props.id)}>
         {props.foto}
-        {props.date}
+        <P>{props.movie}</P>
+        <P>{props.date}</P>
       </CardStyleMovie>
-    </div>
   );
 };
 export default CardMovie;

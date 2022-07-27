@@ -1,11 +1,12 @@
-import { CardGenre } from "./Styled";
+import { CardGenre } from "./styled";
 
 const CardButtonMovie = (props) => {
     return (
-      <div>
+        <div>
         <CardGenre>{props.genre}</CardGenre>
-      </div>
+        </div>
     );
 };
+export default CardButtonMovie;
 
 // card generos de filmes
