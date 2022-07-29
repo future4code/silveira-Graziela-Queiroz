@@ -6,12 +6,9 @@ import CardMovieButton from '../ButtonGenreMovie/CardMovieButton';
 //import { useNavigate } from 'react-router-dom'
 
 
-function Header({setGeneros, generos}) { // ao invés de usar props, passa o estado por parametro.
+function Header({ setGeneros, generos }) { // ao invés de usar props, passa o estado por parametro.
 
   const [genreList, setGenreList] = useState([]);
-
-  //const navigate = useNavigate();
-
 
   const getGenreMovie = async () => {
     await axios
@@ -24,27 +21,27 @@ function Header({setGeneros, generos}) { // ao invés de usar props, passa o est
       });
   };
 
-  useEffect(() => { 
+  useEffect(() => {
     getGenreMovie();
   }, []);
 
-  // const mudancaGenero = (id) => {// funcao mudanca de genero
-  //  const index = generos.indexOF(id) // metodo indexOf elemento 
-  //  const newGeneros = [...genero] // copia do array retornando um novo array.
-  //  if(index === -1){
-  //    newGeneros.push(id)// adiciona um elemento em uma lista
-  //  }else{
-  //   newGeneros.splice(index,1)// splice se clicar novamente ele tira.
-  //  }
-  //  setGeneros(newGeneros)
-  // }
+  const mudancaGenero = (id) => {// funcao mudanca de genero
+    const index = generos.indexOf(id) // metodo indexOf elemento 
+    const newGeneros = [...generos] // copia do array retornando um novo array.
+    if (index === -1) {
+      newGeneros.push(id)// adiciona um elemento em uma lista
+    } else {
+      newGeneros.splice(index, 1)// splice se clicar novamente ele tira.
+    }
+    setGeneros(newGeneros)
+  }
 
   const genres = genreList.genres?.map((gener) => {
     return (
       <CardMovieButton
-        //mudancaGenero={mudancaGenero}// passando genero dentro do CardMovieButton como props.
+        mudancaGenero={mudancaGenero}// passando genero dentro do CardMovieButton como props.
         key={gener.id}
-        //id={gener.id}
+        id={gener.id}
         genre={gener.name}
       />
     );

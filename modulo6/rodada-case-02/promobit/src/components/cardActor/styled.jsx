@@ -3,22 +3,19 @@ import styled from 'styled-components'
 export const CardStyledActor = styled.div`
     display: flex;
     flex-direction: column;
-    width: 176px;
-    height: 320px;
-    left: 320px;
-    top: 534px;
     border-radius: 4px;
-    margin: 20px 20px;
-    pading:20px;
-    box-shadow: 5px 5px 5px black;
-    background-color: #C2C1BD;
+    padding: 5px;
+    width: 191px;
+    background-color: #FFFFFF;;
+    margin-right: 16px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 20px;
     `
 // Estilização do Card dos Filmes
 
 export const P = styled.p`
-    margin: 5px 0 5px 0 ;
+    margin: 0 0 5px 0 ;
     font-size: 13px;
     font-weight: bold;
-    text-align:center;
-    text-shadow: whitesmoke 0.1em 0.1em 0.2em;
+    font-family: 'Roboto', sans-serif;
 `

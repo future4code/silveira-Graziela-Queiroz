@@ -8,7 +8,7 @@ const CardMovie = (props) => {
   
   const irParaDetalhes = (id) => {
     navigate(`/detalheDosFilmes/${id}`)
-}
+  }
 
   return (
       <CardStyleMovie onClick={()=>irParaDetalhes(props.id)}>
