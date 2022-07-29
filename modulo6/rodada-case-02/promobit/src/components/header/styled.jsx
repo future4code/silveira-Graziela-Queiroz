@@ -36,3 +36,14 @@ export const DivGenres = styled.div`
 export const P = styled.p`
   color:whitesmoke;
 `
+export const Vetor = styled.p`
+  margin-top: 0px;
+  background-color: #5c16c5;
+  width: 100%;
+  height: 45px;
+  left: 0px;
+  color: whitesmoke;
+  font-size: 20px;
+  padding-left: 50px;
+  padding-top: 15px;
+  `;

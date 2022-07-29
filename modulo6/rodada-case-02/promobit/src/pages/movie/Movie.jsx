@@ -9,8 +9,8 @@ import CardMovieButton from '../../components/ButtonGenreMovie/CardMovieButton';
 
 function Movie() {
     const [movies, setMovies] = useState([]);
+    const [generos, setGeneros] = useState([]) // criei estado generos
 
-    //const navigate = useNavigate();
 
     const getMovie = async () => {
         await axios.get(`${BASE_URL2}`) // retorna os filmes 
@@ -19,20 +19,28 @@ function Movie() {
                 //console.log(res.data)
             })
             .catch((err) => {
-                console.log('erro', err);
+            alert(err.response.data.status_message); // tratamento de erro ( Resposta do endpoint)
             });
     };
 
     useEffect(() => {
         getMovie();
-    }, []);
+    }, []); 
+
+    //  const generoFilter = generos?.filter((generos)=>{
+    //   return generos.name === "genres"
+    //  })
+     
 
     const filmes = movies.results?.map((filme) => {
         return (
             <CardMovie
                 id={filme.id}
                 key={filme.id}
-                foto={<img component="img" height="240" src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`} alt="Poster" />}
+                foto={<img component="img" 
+                height="240" 
+                src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`}
+                alt="Poster" />}
                 movie={filme.title}
                 date={filme.release_date} 
             />

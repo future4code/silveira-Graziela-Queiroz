@@ -1,6 +1,6 @@
 //import { PropaneRounded } from '@mui/icons-material';
 import React from 'react'
-import { CardStyleMovie, P } from './style';
+import { CardStyleMovie, P } from './styled';
 import { useNavigate } from 'react-router-dom'
 
 const CardMovie = (props) => {
