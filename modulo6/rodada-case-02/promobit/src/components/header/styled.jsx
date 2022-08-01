@@ -35,14 +35,12 @@ export const DivGenres = styled.div`
 export const P = styled.p`
   color:whitesmoke;
 `
-export const Vetor = styled.p`
-  margin-top: 0px;
-  background-color: #5c16c5;
+export const ContainerVetor = styled.div`
+  background-color: #5C16C5;
   width: 100%;
-  height: 56px;
-  left: 0px;
-  color: whitesmoke;
-  font-size: 20px;
-  padding-left: 50px;
-  padding-top: 15px;
-  `;
+  height: 80px;
+`;
+
+export const Vetor = styled.p`
+  background-color: whitesmoke;
+`;

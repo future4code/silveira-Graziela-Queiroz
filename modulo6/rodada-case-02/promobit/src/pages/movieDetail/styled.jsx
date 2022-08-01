@@ -31,7 +31,7 @@ export const HeaderStyle = styled.div`
   background-color: #2D0C5E;
   width: 100%;
   height: 600px;
-  margin-top: 56px;
+  
 `
 
 export const DivPoster = styled.div`
@@ -87,5 +87,20 @@ export const DivTrailer = styled.p`
   flex-direction: column;
   margin: 50px;
 `
+export const VetorDetail = styled.div`
+ background-color: #5c16c5;
+ width: 100%;
+ height: 80px;
+ `
 
-
+export const Vetor1 = styled.p`
+color: whitesmoke;
+margin-top:0;
+padding:20px;
+font-size: 18px; 
+;
+`
+export const ContainerRecommendations = styled.div`
+  display: flex;
+  width: 95%;
+`

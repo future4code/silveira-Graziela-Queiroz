@@ -1,10 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { base_url } from "../../constants/url";
-import { HeaderStyled, H1, DivGenres, P, Vetor } from "./styled";
+import { HeaderStyled, H1, DivGenres, P, Vetor, ContainerVetor } from "./styled";
 import CardMovieButton from '../ButtonGenreMovie/CardMovieButton';
-//import { useNavigate } from 'react-router-dom'
-
 
 function Header({ setGeneros, generos }) { // ao invés de usar props, passa o estado por parametro.
 
@@ -49,7 +47,9 @@ function Header({ setGeneros, generos }) { // ao invés de usar props, passa o e
 
   return (
     <HeaderStyled >
-      <Vetor>TMDB</Vetor>
+      <ContainerVetor>
+        <Vetor>TMDB</Vetor>
+      </ContainerVetor>
       <H1>Milhões de filmes, séries e pessoas para descobrir. Explore já!</H1>
       <P>FILTRE POR:</P>
       <DivGenres>
