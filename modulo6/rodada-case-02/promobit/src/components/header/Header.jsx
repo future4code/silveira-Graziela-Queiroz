@@ -47,9 +47,6 @@ function Header({ setGeneros, generos }) { // ao invés de usar props, passa o e
 
   return (
     <HeaderStyled >
-      <ContainerVetor>
-        <Vetor>TMDB</Vetor>
-      </ContainerVetor>
       <H1>Milhões de filmes, séries e pessoas para descobrir. Explore já!</H1>
       <P>FILTRE POR:</P>
       <DivGenres>

@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { BASE_URL } from '../../constants/url';
 import { useParams } from "react-router-dom";
 import CardActor from '../../components/cardActor/CardActor';
 import { ContainerCardActor, ContainerSinopse, DivGeral, DivInfos, DivPoster, Img, HeaderStyle, Titulo, InfosFilme, Avaliacao, Sinopse, Psinops, ContainerElenco, ElencoP, DivTrailer, VetorDetail, Vetor1, ContainerRecommendations, ImgTrailer } from './styled';
 import CardMovie from '../../components/cardMovie/CardMovie';
-import { ImageAspectRatioRounded } from '@mui/icons-material';
-
 
 const DetailMovie = () => {
   const [detailMovie, setDetailMovie] = useState([]);

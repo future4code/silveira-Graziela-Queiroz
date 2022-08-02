@@ -7,7 +7,7 @@ export const CardGenre = styled.div `
     align-items: center;
     padding: 8px 16px;
     gap: 8px;
-    width: 90px;
+    width: auto;
     height: 40px;
     background: #FFFFFF;
     border-radius: 4px;

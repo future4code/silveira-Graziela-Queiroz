@@ -9,6 +9,7 @@ export const HeaderStyled = styled.div`
   width: 100%;
   height: 506px;
   box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+  margin-bottom: 30px;
 `
 export const H1 = styled.h1`
   align-items: center;
@@ -20,27 +21,19 @@ export const H1 = styled.h1`
   font-family: 'Roboto', sans-serif;
   font-size: 48px;
   line-height: 56px;
-  width: 710px;
-  margin-bottom: 50px;
+  width: 830px;
+  margin-bottom: 20px;
   margin-top: 50px;
 `
 
 export const DivGenres = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 90%;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom:30px;
 `
 export const P = styled.p`
   color:whitesmoke;
 `
-export const ContainerVetor = styled.div`
-  background-color: #5C16C5;
-  width: 100%;
-  height: 80px;
-`;
-
-export const Vetor = styled.p`
-  background-color: whitesmoke;
-`;

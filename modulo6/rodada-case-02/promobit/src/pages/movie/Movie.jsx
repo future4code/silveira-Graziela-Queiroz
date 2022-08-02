@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/header/Header';
 import axios from 'axios';
-import { BASE_URL2 } from '../../constants/url';
 import CardMovie from '../../components/cardMovie/CardMovie'
-import { ContainerCardMovie, DivGeral } from './styled';
+import { ContainerCardMovie, ContainerPagination, ContainerVetor, DivGeral, Vetor } from './styled';
 import Pagination from '@mui/material/Pagination';
 
 function Movie() {
@@ -58,12 +57,17 @@ function Movie() {
 
     return (
         <DivGeral>
+            <ContainerVetor>
+                <Vetor>TMDB</Vetor>
+            </ContainerVetor>
             <Header setGeneros={setGeneros} generos={generos} />
             <ContainerCardMovie>
                 {filmes}
             </ContainerCardMovie>
-
-            <Pagination count={10} page={page} onChange={mudarPage} />
+            <ContainerPagination> 
+                <Pagination count={10} page={page} onChange={mudarPage} />
+            </ContainerPagination>
+           
         </DivGeral>
     );
 }

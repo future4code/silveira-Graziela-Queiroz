@@ -74,7 +74,8 @@ export const Sinopse = styled.div`
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   letter-spacing: -0.005em;
-  width: 700px;
+  width: auto;
+  padding-right: 100px;
 `
 export const Psinops = styled.p`
   font-weight: bold;
@@ -82,23 +83,21 @@ export const Psinops = styled.p`
   margin-bottom: 5px;
 `
 
-export const DivTrailer = styled.p`
+export const DivTrailer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 50px;
 `
 export const VetorDetail = styled.div`
- background-color: #5c16c5;
- width: 100%;
- height: 80px;
- `
-
+  background-color: #5c16c5;
+  width: 100%;
+  height: 50px;
+`
 export const Vetor1 = styled.p`
-color: whitesmoke;
-margin-top:0;
-padding:20px;
-font-size: 18px; 
-;
+  color: whitesmoke;
+  margin-top:0;
+  padding: 15px;
+  font-size: 18px; 
 `
 export const ContainerRecommendations = styled.div`
   display: flex;
