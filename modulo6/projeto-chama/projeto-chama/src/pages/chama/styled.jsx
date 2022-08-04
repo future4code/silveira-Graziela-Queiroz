@@ -6,7 +6,7 @@ width: auto;
 export const ContainerInfoUser = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   background-color: #FF7F00;
   width: 100%;
@@ -15,6 +15,8 @@ export const ContainerInfoUser = styled.div`
   box-shadow: 0px 5px 5px 0px #2271B3 (0,0,0,0.75);
 `
 export const H1 = styled.h1`
+  display:flex;
+  justify-content:center;
   align-items: center;
   padding: 0 15px;
   color: #131819
@@ -24,7 +26,28 @@ export const H1 = styled.h1`
   line-height: 56px;
 `
 export const ContainerMapInfo = styled.div`
-    width: 100%;
-    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  width: 100%;
+  height: 600px;
 `
+export const Img = styled.img`
+  margin-top: 20px;
+  border-radius: 20%;
+  box-shadow: 2px 5px 2px 3px #2cd4d9;
+`;
 
+export const DivButton = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
+ `;
+
+export const Form = styled.form`
+ border: thick solid #000000;
+ left: 50%;
+
+ `;
