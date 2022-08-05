@@ -47,7 +47,7 @@ export const DivButton = styled.div`
  `;
 
 export const Form = styled.form`
- border: thick solid #000000;
+ border: solid #000000;
  left: 50%;
 
  `;
