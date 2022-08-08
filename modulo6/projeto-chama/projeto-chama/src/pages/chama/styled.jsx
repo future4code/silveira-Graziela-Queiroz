@@ -9,7 +9,7 @@ export const ContainerInfoUser = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #FF7F00;
-  width: 100%;
+  width: auto;
   height: 400px;
   padding: 0 10px;
   box-shadow: 0px 5px 5px 0px #2271B3 (0,0,0,0.75);
@@ -29,8 +29,9 @@ export const ContainerMapInfo = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-  width: 100%;
-  height: 600px;
+    width: 100%;
+    height: 600px;
+    background-color: #dcdcdc;
 `
 export const Img = styled.img`
   margin-top: 20px;
@@ -43,7 +44,7 @@ export const DivButton = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 20px;
+  background-color: #dcdcdc;
  `;
 
 export const Form = styled.form`
@@ -51,3 +52,6 @@ export const Form = styled.form`
  left: 50%;
 
  `;
+ export const P = styled.p`
+  font-size: 17px;
+`;

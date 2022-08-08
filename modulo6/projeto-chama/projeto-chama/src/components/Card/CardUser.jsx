@@ -5,7 +5,7 @@ const CardUser = ({user, avatar_url, bio, email, name, login}) => {// Card do us
   return (
     <div>
       <CardUserStyled>
-      {user}
+        {user}
         {avatar_url ? (
           <img height="180px" src={avatar_url} alt="avatar"></img>  ) : ( <></>)}
         {bio}

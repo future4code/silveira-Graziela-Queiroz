@@ -5,12 +5,17 @@ import Button from '@mui/material/Button';
 import axios from "axios";
 import { BASE_URL } from "../../constants/url/url";
 import CardUser from "../../components/Card/CardUser";
+import { useNavigate } from "react-router-dom";
+import { irParaDetail } from "../../routes/Coordinator";
 
 const Chama = () => {
     const [user, setUser] = useState([])
     const [input, setInput] = useState("") // estado somente para pegar um unico usuario.
     const [inputStore, setInputStore] = useState("")
+    const [historico, setHistorico] = useState([]) // criou um estado
 
+    const navigate = useNavigate();
+    
     const getUser = async () => {  // endpoint  retorna lista de usuarios
         await axios
             .get(`${BASE_URL}`)
@@ -23,13 +28,10 @@ const Chama = () => {
             });
     };
 
-    console.log(input.value)
     const getUserSingle = async () => {  // endpoint  retorna um unico usuario
-        //  console.log(input)
         await axios
             .get(`${BASE_URL}/${input}`) // não quer que renderize, só quando clicar no botao enviar
             .then((res) => {
-                // console.log('USUARIO UNICO',res.data)
                 setInputStore(res.data);
             })
             .catch((err) => {
@@ -39,13 +41,7 @@ const Chama = () => {
     
     useEffect(() => {
         getUser()
-        // getUserSingle()
     }, []);
-    
-    // console.log(getAllUser)
-    //   const onChangeInput = (e) => { 
-    //     setInput(e.target.value)
-    //   }
 
     const handleChange = (e) => { // recebe a informação digitada
         setInput(e.target.value)
@@ -55,15 +51,19 @@ const Chama = () => {
         e.preventDefault();
         getUserSingle()
         setInput("")
+        setHistorico([...historico, input])//COLOCAR NO ESTADO GLOBAL, PARA APARECER DENTRO DO CARD DE DETALHES AS INFORMAÇÕES
     }
  
+    console.log('inpustore', inputStore)
+
+
     return (
         <DivGeral>
             <ContainerInfoUser>
                 <div>
                     <Img height="150px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBMFdsUl9b1zLVBxNNnJPyovDPinngoRGbLw&usqp=CAU" alt="logo GitHub" />
                 </div>
-                <H1>Projeto Chama</H1>
+                <H1>Chama</H1>
 
                 <Form onSubmit={handleSubmit}>
                     <TextField style={{ background: '#dcdcdc', widht: "250px" }} label="Nome do usuário usado no GitHub" variant="filled"
@@ -81,19 +81,19 @@ const Chama = () => {
             </ContainerInfoUser>
 
             <ContainerMapInfo>
-                <p>Este é o map de pegar os usuarios</p>
+                <p>Informações do usuario do GitHub</p>
 
                 <CardUser
                     key={inputStore.id}
                     avatar_url={inputStore.avatar_url}
                     bio={inputStore.bio}
-                    email={inputStore.email}
-                    name={inputStore.name}
+                    email={inputStore.id}
+                    name={inputStore.repos_url}
                     login={inputStore.login} >
                 </CardUser >
             </ContainerMapInfo>
             <DivButton>
-                <Button style={{ background: '#808080' }} color="primary" variant="contained">Ir para página de detalhes</Button>
+                <Button onClick={() => irParaDetail(navigate)} style={{ background: '#808080' }} color="primary" variant="contained">Ir para página de detalhes</Button>
             </DivButton>
 
         </DivGeral>
