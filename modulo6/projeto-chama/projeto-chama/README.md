@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+![header](https://rafadev.com.br/wp-content/uploads/2021/01/3-razoes-para-comecar-a-utilizar-o-github.jpg)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Projeto *Chama*
 
-## Available Scripts
+Primeira Página:
 
-In the project directory, you can run:
+Este projeto foi inspirado em um *Search de Busca* por perfis de usuários da plataforma do GitHub, construído de forma intuitiva para o usuário que o possibilita através de um campo na página inicial onde digita uma conta e tem acesso à algumas informações como imagem, avatar, nome, e-mail e biografia mas vale lembrar que só aparecerão caso o usuário da conta tenha incluído no github caso contrário não será possível visualizar. Logo abaixo do perfil você pode navegar para página de detalhes do usuário.
 
-### `npm start`
+Segunda Página:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Esta página de histórico consiste em mostrar todos os termos anteriores pesquisados pelo usuário, ordenados por timestamp (que  representa um ponto específico da linha do tempo pelo mais recente, levando em considerações a questão do fuso-horário). 
+O usuario pode clicar no item do histórico e trazer o resultado do termo anteriormente pesquisado.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Tecnologias utilizadas:
+<tr>
++ React
++ Javascript
++ CSS
++ HTML
+### libs utilizadas:
+<tr>
++ React-router-Dom (Biblioteca)
++ axios (Biblioteca)
++ styled-components (Responsável por estilizar cada página ou components)
++ Router(Responsável por Rotas)
++ Coordinator (Responsável Pela coordenação das páginas através de variáveis)
++ Components (Responsável por componetizar alguns Cards)
+## Como foi Desenvolvido:
+Criei o projeto pensando em cada detalhe desde design posição das imagens, cores selecionadas através de uma pesquisa em sites de orientação de cores.
+Instalei as bibliotecas axios, styled-components e react-router-dom@6, de extrema importância para que o mesmo rode.
+Analisei os Endpoints: GET /users responsável por retornar uma lista de todos os usuário do GitHub, GET /users-unico responsável pelo retorno de um único usuário.
+### Realizado Por:Graziela Queiroz
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Link do Surge: **

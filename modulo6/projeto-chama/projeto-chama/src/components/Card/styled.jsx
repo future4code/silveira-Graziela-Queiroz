@@ -2,19 +2,30 @@ import styled from "styled-components"
 
 export const CardUserStyled = styled.div`
   display: flex;
-  flex-direction: column;
-  left: 320px;
-  top: 534px;
+  flex-direction: row;
   background: url(image.png);
-  border-radius: 4px;
   box-shadow: 2px 2px 4px 2px #9e9d9d;
   text-align: center;
   font-size: 18px;
-  margin: 80px;
+  margin: 30px;
   border-radius: 5px;
-  width: 250px;
-  height: 320px;
+  width: 800px;
+  height: auto;
   background-color: #c9c7c7;
 `;
+
+export const DivInfos = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: initial;
+  font-size: 16px;
+  justify-content: center
+`;
+
+export const Pinfos = styled.p`
+  margin: 5px 5px 15px 15px;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+`;
+
 
 // Estilização que vai receber o perfil do usuario
