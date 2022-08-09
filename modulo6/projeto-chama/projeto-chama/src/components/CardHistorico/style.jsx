@@ -17,3 +17,9 @@ export const ButtonHistorico = styled.button`
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-size: 16px;
 `;
+export const CardP = styled.p`
+ margin: 10px 5px;
+ font-family: "Roboto";
+ color:#FF7F00;
+ font-weight: bold;
+`;

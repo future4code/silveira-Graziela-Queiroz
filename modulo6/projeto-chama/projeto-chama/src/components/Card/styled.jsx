@@ -28,4 +28,3 @@ export const Pinfos = styled.p`
 `;
 
 
-// Estilização que vai receber o perfil do usuario

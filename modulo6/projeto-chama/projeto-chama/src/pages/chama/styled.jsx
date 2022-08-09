@@ -53,4 +53,5 @@ export const ContainerMapInfo = styled.div`
     align-items: center;
     width: 100%;
     background-color: #dcdcdc;
+    min-height: 61vh;
 `
