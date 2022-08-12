@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { InputsContainer, ScreenContainer } from "./styled";
 import axios from "axios";
-import { BASE_URL } from "../../constants/url";
 import useForm from "../../hooks/useForm";
-import { goToRegisterPage } from "../../routes/Coordinator";
+import { goToListRestaurant } from "../../routes/Coordinator";
+import { base_url } from "../../constants/url";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -24,11 +24,11 @@ const Signup = () => {
   const signup = async (e) => {
     e.preventDefault();
     if (form.password === recordPassword) {
-      await axios.post(`${BASE_URL}/signup`, form)
+      await axios.post(`${base_url}`, form)
         .then((res) => {
           localStorage.setItem('token', res.data.token)
           alert("Usuario criado!");
-          goToRegisterPage(navigate)
+          goToListRestaurant(navigate);// Usar na pg de cadastar o endereço
           
         })
         .catch((err) => {
@@ -39,6 +39,7 @@ const Signup = () => {
     else {
       alert("Senhas divergentes")
     }
+    
   };
 
   return (

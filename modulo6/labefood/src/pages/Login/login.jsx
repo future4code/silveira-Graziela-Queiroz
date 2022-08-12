@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, TextField, Typography } from "@mui/material";
-import { goToSignup } from "../../routes/Coordinator";
+import { goToListRestaurant, goToSignup } from "../../routes/Coordinator";
 import { InputsContainer, ScreenContainer } from "../Signup/styled";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
@@ -25,15 +25,26 @@ const Login = () => {
     e.preventDefault();// PreventDefault: ELE VAI ESPERAR VC DIGITAR TODA A INFORMAÇÃO, DEPOIS VAI SER ENVIADA.
     const bodyForm = form
     await axios
-        .post(`${BASE_URL}`, bodyForm)
-        .then((res) => {
-            console.log(res.data);
-            setForm(res.data);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-};
+      .post(`${BASE_URL}`, bodyForm)
+      .then((res) => {
+        localStorage.setItem(res.data.token);
+        if (res.data.user.hasAddress === false) {
+          alert(
+            `${res.data.user.name}, you do not have an account. We will redirect you...`
+          );
+          goToSignup(navigate);
+        } else {
+          alert("Welcome!")
+          goToListRestaurant(navigate);
+        }
+        clear();
+        setForm(res.data.token);
+        console.log('RES', res.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const password = () => {
     if (passwordLogin === 'password') {
@@ -44,16 +55,17 @@ const Login = () => {
   }
 
   // Aqui informo as variaveis do useForm e informa os campos a serem preenchidos nesta page Login
-   
+
   return (
     <ScreenContainer>
 
       <Typography sx={{ color: "black", "margin-top": "15px", fontWeight: "bold" }}>Entrar</Typography>
       <InputsContainer>
-        <form>
+        <form onSubmit={loginForm}>
           <TextField
             name="email"
             value={form.email}
+            onChange={InputChange}
             variant={"outlined"}
             // color={"primary"}
             fullWidth
@@ -65,6 +77,7 @@ const Login = () => {
             placeholder="Senha"
             name="password"
             value={form.password}
+            onChange={InputChange}
             type="password"
             variant={"outlined"}
             // color={"primary"}
@@ -79,7 +92,7 @@ const Login = () => {
             :
             <VisibilityIcon className="eye" onClick={password} />
           }
-          
+
           <Button variant='contained' type="submit" sx={{ color: 'black' }} fullWidth onClick={() => (navigate)}>Entrar</Button>
         </form>
 
