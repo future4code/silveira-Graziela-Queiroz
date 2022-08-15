@@ -6,7 +6,6 @@ export const ScreenContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
-  
 `;
 
 export const InputsContainer = styled.div`
@@ -14,12 +13,5 @@ export const InputsContainer = styled.div`
   flex-direction: column;
   max-width: 400px;
   align-items: center;
+  margin-bottom: 20px;
 `;
-
-// export const TextFieldCpf = styled()`
-// // input::-webkit-outer-spin-button,
-// // input::-webkit-inner-spin-button {
-// //   -webkit-appearance: none;
-// //   margin: 0;
-// // }
-// `

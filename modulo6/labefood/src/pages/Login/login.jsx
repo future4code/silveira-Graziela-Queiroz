@@ -9,8 +9,6 @@ import { BASE_URL } from "../../constants/url";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-
-
 const Login = () => {
 
   const [passwordLogin, setPasswordLogin] = useState('password');
@@ -25,9 +23,10 @@ const Login = () => {
     e.preventDefault();// PreventDefault: ELE VAI ESPERAR VC DIGITAR TODA A INFORMAÇÃO, DEPOIS VAI SER ENVIADA.
     const bodyForm = form
     await axios
-      .post(`${BASE_URL}`, bodyForm)
+      .post(`${BASE_URL}/login`, bodyForm)
       .then((res) => {
-        localStorage.setItem(res.data.token);
+        localStorage.setItem('token', res.data.token);
+
         if (res.data.user.hasAddress === false) {
           alert(
             `${res.data.user.name}, you do not have an account. We will redirect you...`
@@ -37,6 +36,7 @@ const Login = () => {
           alert("Welcome!")
           goToListRestaurant(navigate);
         }
+
         clear();
         setForm(res.data.token);
         console.log('RES', res.data)
@@ -59,7 +59,7 @@ const Login = () => {
   return (
     <ScreenContainer>
 
-      <Typography sx={{ color: "black", "margin-top": "15px", fontWeight: "bold" }}>Entrar</Typography>
+      <Typography sx={{ color: "black", marginTop: 15, fontWeight: "bold" }}>Entrar</Typography>
       <InputsContainer>
         <form onSubmit={loginForm}>
           <TextField

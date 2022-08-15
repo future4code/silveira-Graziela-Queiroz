@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Address from "../pages/Address/address";
 import Login from '../pages/Login/login'
 import Restaurant from "../pages/Restaurant/restaurant";
 import Signup from '../pages/Signup/signup'
+
 
 const Router = () => {
     return (
@@ -11,6 +12,7 @@ const Router = () => {
                 <Routes>
                     <Route index element={< Login />} />
                     <Route path="signup" element={< Signup />} />
+                    <Route path="address" element={ <Address />}/>
                     <Route path="restaurant" element={ <Restaurant />}/>
                 </Routes>
             </BrowserRouter>

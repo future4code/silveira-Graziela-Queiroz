@@ -8,6 +8,11 @@ export const goToLogin = (navigate) => {
  
 }
 
+export const goToAddress = (navigate) => {
+    navigate("/address");
+ 
+}
+
 export const goToListRestaurant = (navigate) => {
     navigate("/listRestaurant");
  

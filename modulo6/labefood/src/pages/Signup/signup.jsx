@@ -1,11 +1,11 @@
-import { TextField, Typography, Button } from "@mui/material";
 import React, { useState } from "react";
+import { TextField, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { InputsContainer, ScreenContainer } from "./styled";
 import axios from "axios";
 import useForm from "../../hooks/useForm";
-import { goToListRestaurant } from "../../routes/Coordinator";
-import { base_url } from "../../constants/url";
+import { goToAddress } from "../../routes/Coordinator";
+import { BASE_URL } from "../../constants/url";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -24,12 +24,12 @@ const Signup = () => {
   const signup = async (e) => {
     e.preventDefault();
     if (form.password === recordPassword) {
-      await axios.post(`${base_url}`, form)
+      await axios.post(`${BASE_URL}/signup`, form)
         .then((res) => {
           localStorage.setItem('token', res.data.token)
           alert("Usuario criado!");
-          goToListRestaurant(navigate);// Usar na pg de cadastar o endereço
-          
+          clear();
+          goToAddress(navigate);// Usar na pg de cadastrar o endereço
         })
         .catch((err) => {
           console.log(err)
@@ -39,7 +39,6 @@ const Signup = () => {
     else {
       alert("Senhas divergentes")
     }
-    
   };
 
   return (
@@ -55,7 +54,7 @@ const Signup = () => {
             variant={"outlined"}
             // color={"primary"}
             fullWidth
-            margin={"normal"}
+            margin={"dense"}
             label={"Nome e sobrenome"}
             required
           />
@@ -67,7 +66,7 @@ const Signup = () => {
             variant={"outlined"}
             // color={"primary"}
             fullWidth
-            margin={"normal"}
+            margin={"dense"}
             label={"E-mail"}
             required
           />
@@ -80,7 +79,7 @@ const Signup = () => {
             variant={"outlined"}
             // color={"primary"}
             fullWidth
-            margin={"normal"}
+            margin={"dense"}
             label={"CPF"}
             inputProps={{
               inputMode: "numeric",
@@ -99,7 +98,7 @@ const Signup = () => {
             variant={"outlined"}
             // color={"primary"}
             fullWidth
-            margin={"normal"}
+            margin={"dense"}
             label={"Senha"}
             required
             minLength="8"
@@ -114,11 +113,11 @@ const Signup = () => {
             variant={"outlined"}
             color={"primary"}
             fullWidth
-            margin={"normal"}
+            margin={"dense"}
             label={"Confirme sua senha"}
             minLength="8"
           />
-          <Button type="submit" variant='contained' fullWidth color={"primary"} sx={{ color: 'black', 'margin-top': '15px' }}>
+          <Button type="submit" variant='contained' fullWidth color={"primary"} sx={{ color: 'black', marginTop: 15 }}>
             Criar
           </Button>
         </form>
