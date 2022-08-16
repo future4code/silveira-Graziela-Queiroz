@@ -36,7 +36,7 @@ const Address = () => {
             })
             .catch((err) => {
                 console.log(err)
-                alert("Erro ao  cadastrar endereço!", err)
+                alert("Erro ao  cadastrar endereço!")
             })
     };
 

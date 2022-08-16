@@ -29,7 +29,7 @@ const Signup = () => {
           localStorage.setItem('token', res.data.token)
           alert("Usuario criado!");
           clear();
-          goToAddress(navigate);// Usar na pg de cadastrar o endereço
+          goToAddress(navigate);
         })
         .catch((err) => {
           console.log(err)

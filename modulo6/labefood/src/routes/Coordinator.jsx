@@ -18,3 +18,10 @@ export const goToListRestaurant = (navigate) => {
  
 }
 
+export const goToDetailRestaurant = (navigate, id) => {
+    navigate(`/detailRestaurant/${id}`);
+ 
+}
+
+
+
