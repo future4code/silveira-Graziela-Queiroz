@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { TextField, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { InputsContainer, ScreenContainer } from "./styled";
+import { InputsContainer, Logo, ScreenContainer } from "./styled";
 import axios from "axios";
 import useForm from "../../hooks/useForm";
 import { goToAddress } from "../../routes/Coordinator";
 import { BASE_URL } from "../../constants/url";
+import Rappi4 from '../../assets/Rappi4.png'
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ const Signup = () => {
 
   return (
     <ScreenContainer>
+      <Logo src={Rappi4} width={"150px"}/>
       <Typography sx={{ color: 'black', marginTop: 15, fontWeight: 'bold' }}>Cadastrar</Typography>
       <InputsContainer>
         <form onSubmit={signup}>

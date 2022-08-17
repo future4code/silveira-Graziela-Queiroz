@@ -8,6 +8,7 @@ import axios from "axios";
 import { BASE_URL } from "../../constants/url";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { LogoImage, P } from "./styled";
 
 const Login = () => {
 
@@ -58,8 +59,8 @@ const Login = () => {
 
   return (
     <ScreenContainer>
-
-      <Typography sx={{ color: "black", marginTop: 15, fontWeight: "bold" }}>Entrar</Typography>
+      <LogoImage src={"https://raw.githubusercontent.com/future4code/Silveira-labe-food1/master/src/assets/Logo.png"}/>
+      <Typography sx={{ color: "black", fontWeight: "bold" }}>Entrar</Typography>
       <InputsContainer>
         <form onSubmit={loginForm}>
           <TextField
@@ -85,7 +86,7 @@ const Login = () => {
             margin={"normal"}
             label={"Senha"}
             required
-            minLength="8"
+            minLength="6"
           />
           {(passwordLogin === 'password') ?
             <VisibilityOffIcon className="eye" onClick={password} />
@@ -96,8 +97,9 @@ const Login = () => {
           <Button variant='contained' type="submit" sx={{ color: 'black' }} fullWidth onClick={() => (navigate)}>Entrar</Button>
         </form>
 
-        <Button fullWidth onClick={() => goToSignup(navigate)} sx={{ color: 'black' }}><strong>Não possui cadastro? Clique aqui.</strong></Button>
-
+        <Button fullWidth onClick={() => goToSignup(navigate)} sx={{ color: 'black' }}>
+          <P><strong>Não possui cadastro? Clique aqui.</strong></P>
+        </Button>
       </InputsContainer>
 
     </ScreenContainer>

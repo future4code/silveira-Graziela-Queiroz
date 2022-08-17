@@ -30,9 +30,9 @@ const GlobalState = (props) => {
 
     const getRestaurantDetail = (id) => {
         axios
-            .get(`${BASE_URL}/restaurants/${id}`, headers)
+            .get(`${BASE_URL}/restaurants/${1}`, headers)
             .then((res) => {
-                console.log('detalhe', res.data.restaurant)
+                console.log('DETALHE', res.data.restaurantDetail)
                 setRestaurantDetail(res.data.restaurant)
             })
             .catch((err) => {

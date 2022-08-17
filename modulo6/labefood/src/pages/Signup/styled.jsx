@@ -16,6 +16,9 @@ export const InputsContainer = styled.div`
   align-items: center;
 `;
 
+export const Logo = styled.img`
+  padding-top: 15px;
+`;
 // export const TextFieldCpf = styled()`
 // // input::-webkit-outer-spin-button,
 // // input::-webkit-inner-spin-button {

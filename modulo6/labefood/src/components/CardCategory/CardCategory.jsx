@@ -3,6 +3,7 @@ import { CardStyleCategory } from "./styled";
 
 
 const CardCategory = (props) => {
+   
     return(
         <CardStyleCategory>
             <p>{props.category}</p>
