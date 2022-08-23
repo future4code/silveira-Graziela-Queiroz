@@ -2,12 +2,13 @@ import { useState } from "react";
 import GlobalStateContext from "./GlobalStateContext";
 import axios from "axios";
 import { BASE_URL } from "../constants/url";
-import { useForm } from "../hooks/useForm";
 
 const GlobalState = (props) => {
     const [restaurants, setRestaurants] = useState([]);
     const [restaurantDetail, setRestaurantDetail] = useState([]);
-
+    const [cardapio, setCardapio] = useState([]);
+    const [buttonAdd, setButtonAdd] = useState(false)// criando para o button
+    const [address, setAddress] = useState({}); //Criando o estado para Editar o Endereço recebe um objeto 
 
     const token = window.localStorage.getItem("token");
     const headers = {
@@ -16,12 +17,34 @@ const GlobalState = (props) => {
         }
     }
 
-    const getRestaurants = async () => {
-        await axios.get(`${BASE_URL}/restaurants`, headers )
+    const getAllAddress = () => {
+        axios
+            .get(`${BASE_URL}/profile/address`, headers)
+            .then((res) => {
+                setAddress(res.data.address);
+            })
+            .catch((erro) => {
+                console.log(erro)
+            })
+    }
+
+     
+    const editAddress = (body) => {
+        axios.put(`${BASE_URL}/address`, body, headers)
+            .then((resp) => {
+                localStorage.setItem('token', resp.data.token)
+                alert("Endereço cadastrado")
+                console.log(resp)
+            })
+            .catch((erro) => {
+                alert(erro.data.message)
+            })
+    }
+    
+    const getRestaurants = () => { // pega todos os restaurants
+        axios.get(`${BASE_URL}/restaurants`, headers)
             .then((res) => {
                 setRestaurants(res.data.restaurants)
-                console.log(res.data.restaurants)
-
             })
             .catch((err) => {
                 alert("Erro!!");
@@ -30,22 +53,21 @@ const GlobalState = (props) => {
 
     const getRestaurantDetail = (id) => {
         axios
-            .get(`${BASE_URL}/restaurants/${1}`, headers)
+            .get(`${BASE_URL}/restaurants/${id}`, headers)
             .then((res) => {
-                console.log('DETALHE', res.data.restaurantDetail)
+                console.log(res)
                 setRestaurantDetail(res.data.restaurant)
+                setCardapio(res.data.restaurant.products)
             })
             .catch((err) => {
                 console.log(err)
             })
     }
 
-
-    const states = { restaurants, restaurantDetail };
-    const setters = { setRestaurants, setRestaurantDetail };
-    const requests = { getRestaurants, getRestaurantDetail };
+    const states = { restaurants, restaurantDetail, cardapio, buttonAdd, address };
+    const setters = { setRestaurants, setRestaurantDetail, setCardapio, setButtonAdd, setAddress };
+    const requests = { getRestaurants, getRestaurantDetail, getAllAddress, editAddress };
     const values = { token, headers }
-
 
     return (
         <GlobalStateContext.Provider value={{ states, setters, requests, values }}>

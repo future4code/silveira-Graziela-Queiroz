@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GlobalStateContext from '../../context/GlobalStateContext';
 import useForm from '../../hooks/useForm';
-import { goToListRestaurant } from '../../routes/Coordinator';
+import { goToRestaurant } from '../../routes/Coordinator';
 import { InputsContainer, ScreenContainer } from './styled';
 import { addAdress } from "../../context/GlobalState"
 import axios from 'axios';
@@ -23,20 +23,22 @@ const Address = () => {
         complement: "",
     });
 
-    const putAddress = async () => {
-        await axios.put(`${BASE_URL}/address`, form, {
+    const putAddress = () => {
+        axios.put(`${BASE_URL}/address`, form, {
             headers: {
                 auth: token
             }
         })
             .then((res) => {
-                console.log(res.data.token)
                 localStorage.setItem('token', res.data.token)
                 alert("Endereço cadastrado com sucesso!");
+                clear(form);
+                goToRestaurant(navigate);
             })
             .catch((err) => {
                 console.log(err)
                 alert("Erro ao  cadastrar endereço!")
+
             })
     };
 
@@ -63,8 +65,7 @@ const Address = () => {
     const onSubmitAddress = (event) => {
         event.preventDefault();
         putAddress(form);
-        clear(form);
-        goToListRestaurant(navigate);
+
     };
 
     return (

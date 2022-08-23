@@ -4,21 +4,21 @@ export const ScreenContainer = styled.div`
   width: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  
-`;
+  align-items: center;  
+`
 
 export const InputsContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 400px;
   align-items: center;
-`;
+`
+
 export const Line = styled.hr`
   width: 100%;
   border: 1px solid black;
-`;
+`
+
 export const ContainerCategory = styled.div`
   display: flex;
   flex-direction: row;
@@ -32,8 +32,15 @@ export const ContainerCategory = styled.div`
   margin: 5px;
   background-color: #e32636;
   color: whitesmoke;
- `;
+`
 
- export const ContainerRestaurant = styled.div`
-  
-  `;
+export const ContainerImg = styled.div`
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  width: 90vw;
+  height: 5vh;
+`
+ 

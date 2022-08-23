@@ -22,18 +22,17 @@ const Signup = () => {
     setRecordPassword(e.target.value);
   };
 
-  const signup = async (e) => {
+  const signup = (e) => {
     e.preventDefault();
     if (form.password === recordPassword) {
-      await axios.post(`${BASE_URL}/signup`, form)
+      axios.post(`${BASE_URL}/signup`, form)
         .then((res) => {
-          localStorage.setItem('token', res.data.token)
+          localStorage.setItem('token', res.data.token);
           alert("Usuario criado!");
           clear();
           goToAddress(navigate);
         })
         .catch((err) => {
-          console.log(err)
           alert("Erro ao criar usuário!")
         })
     }
@@ -44,7 +43,7 @@ const Signup = () => {
 
   return (
     <ScreenContainer>
-      <Logo src={Rappi4} width={"150px"}/>
+      <Logo src={Rappi4} width={"150px"} />
       <Typography sx={{ color: 'black', marginTop: 15, fontWeight: 'bold' }}>Cadastrar</Typography>
       <InputsContainer>
         <form onSubmit={signup}>

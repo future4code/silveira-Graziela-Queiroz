@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, TextField, Typography } from "@mui/material";
-import { goToListRestaurant, goToSignup } from "../../routes/Coordinator";
+import { goToRestaurant, goToSignup } from "../../routes/Coordinator";
 import { InputsContainer, ScreenContainer } from "../Signup/styled";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
@@ -20,10 +20,10 @@ const Login = () => {
 
   let navigate = useNavigate();
 
-  const loginForm = async (e) => {
+  const loginForm = (e) => {
     e.preventDefault();// PreventDefault: ELE VAI ESPERAR VC DIGITAR TODA A INFORMAÇÃO, DEPOIS VAI SER ENVIADA.
     const bodyForm = form
-    await axios
+     axios
       .post(`${BASE_URL}/login`, bodyForm)
       .then((res) => {
         localStorage.setItem('token', res.data.token);
@@ -35,12 +35,11 @@ const Login = () => {
           goToSignup(navigate);
         } else {
           alert("Welcome!")
-          goToListRestaurant(navigate);
+          goToRestaurant(navigate);
         }
 
         clear();
         setForm(res.data.token);
-        console.log('RES', res.data)
       })
       .catch((err) => {
         console.log(err);

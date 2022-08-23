@@ -1,17 +1,15 @@
 import React from "react"
 import { useNavigate } from 'react-router-dom'
+import { goToDetailRestaurant } from "../../routes/Coordinator";
 import { CardP, P, CardStyleRestaurant, Img, DivP  } from "./styled";
 
 
 const CardRestaurant= (props) => {
     const navigate = useNavigate()
 
-    const goToDetail = (id) => {
-      navigate(`/detailRestaurant/${id}`);
-    }
-  
+
     return (
-        <CardStyleRestaurant onClick={()=> goToDetail(props.id)}>
+        <CardStyleRestaurant onClick={props.onClick}>
           <Img src={props.logoUrl} alt="logo"/>
           
           <CardP>

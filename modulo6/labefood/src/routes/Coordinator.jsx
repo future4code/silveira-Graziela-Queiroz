@@ -4,7 +4,7 @@ export const goToSignup = (navigate) => {
  
 }
 export const goToLogin = (navigate) => {
-    navigate("/login");
+    navigate("/");
  
 }
 
@@ -13,8 +13,8 @@ export const goToAddress = (navigate) => {
  
 }
 
-export const goToListRestaurant = (navigate) => {
-    navigate("/listRestaurant");
+export const goToRestaurant = (navigate) => {
+    navigate("/restaurant");
  
 }
 
@@ -23,5 +23,11 @@ export const goToDetailRestaurant = (navigate, id) => {
  
 }
 
-
+export const goToEditProfile = (navigate) => {
+    navigate(`/editProfile`);
+ 
+}
+export const goToEditAddress = (navigate) => {
+    navigate("/editAddress");
+};
 
