@@ -1,19 +1,14 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import GlobalStateContext from "../../context/GlobalStateContext";
-import { CardP, P, Img, CardBigStyle, Price, Services,RestaurantD,ContainerButton, ButtonAdd  } from "./styled";
+import ModalSelectQuantity from "../ModalSelectQuantity/ModalSelectQuantity";
+import { CardP, P, Img, CardBigStyle, Price, Services, RestaurantD, ContainerButton, ButtonAdd } from "./styled";
 
 
 
 const CardBigRestaurant = (props) => {
-   // const [modal, setModal] = useState(false);
-  // const [addButton, setAddButton] = useState(true);
-
+  const [showModal, setShowModal] = useState(false);// mostra o modal ou não, sendo booleano.
+  
   const { states, setters, requests } = useContext(GlobalStateContext);
-
-  const onClickButtonAdd = () => {
-    states.setButtonAdd()
-  } 
-
 
 
   return (
@@ -21,17 +16,20 @@ const CardBigRestaurant = (props) => {
       <Img src={props.photoUrl} alt="logo" />
       <CardP>
         <RestaurantD>
-        <P>{props.name}</P>
+          <P>{props.name}</P>
         </RestaurantD>
         <Services>
-        <P>{props.description}</P>
+          <P>{props.description}</P>
         </Services>
         <Price>
-        <P>Preco: R$ {props.price}</P>
-        <ButtonAdd onClick={(onClickButtonAdd)}>Adicionar</ButtonAdd>
-       
+          <P>Preco: R$ {props.price}</P>
+          <ButtonAdd onClick={() => setModal(true)}>
+            Adicionar
+          </ButtonAdd>
+
         </Price>
-     
+        // chamei o modal aqui
+        <ModalSelectQuantity open={showModal} setOpen={setShowModal} />
       </CardP>
 
     </CardBigStyle>
