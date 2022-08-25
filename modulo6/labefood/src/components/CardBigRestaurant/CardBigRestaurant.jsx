@@ -6,7 +6,7 @@ import { CardP, P, Img, CardBigStyle, Price, Services, RestaurantD, ContainerBut
 
 
 const CardBigRestaurant = (props) => {
-  const [showModal, setShowModal] = useState(false);// mostra o modal ou não, sendo booleano.
+  const [modal, setModal] = useState(false);// mostra o modal ou não, sendo booleano.
   
   const { states, setters, requests } = useContext(GlobalStateContext);
 
@@ -29,7 +29,7 @@ const CardBigRestaurant = (props) => {
 
         </Price>
         // chamei o modal aqui
-        <ModalSelectQuantity open={showModal} setOpen={setShowModal} />
+        <ModalSelectQuantity open={modal} setOpen={setModal} />
       </CardP>
 
     </CardBigStyle>

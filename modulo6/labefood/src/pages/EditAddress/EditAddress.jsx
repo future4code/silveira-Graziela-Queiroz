@@ -14,7 +14,7 @@ const EditAddress = () => {
         localStorage.getItem('token') !== null ? requests.getAllAddress() : goToRestaurant(navigate)
     }, []);
 
-    const { form, inputChange, clear } = useForm({
+    const { form, inputChange, clear, setForm  } = useForm({
         neighbourhood: states.address.neighbourhood,
         number: states.address.number,
         city: states.address.city,

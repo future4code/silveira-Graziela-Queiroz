@@ -9,6 +9,7 @@ const GlobalState = (props) => {
     const [cardapio, setCardapio] = useState([]);
     const [buttonAdd, setButtonAdd] = useState(false)// criando para o button
     const [address, setAddress] = useState({}); //Criando o estado para Editar o Endereço recebe um objeto 
+    const [profile, setProfile] = useState({}); // Pegando o perfil já existente, para  poder.
 
     const token = window.localStorage.getItem("token");
     const headers = {
@@ -64,9 +65,21 @@ const GlobalState = (props) => {
             })
     }
 
-    const states = { restaurants, restaurantDetail, cardapio, buttonAdd, address };
-    const setters = { setRestaurants, setRestaurantDetail, setCardapio, setButtonAdd, setAddress };
-    const requests = { getRestaurants, getRestaurantDetail, getAllAddress, editAddress };
+    const getEditProfile = () => {
+        axios
+            .get(`${BASE_URL}/profile`, headers)
+            .then((res) => {
+                console.log(res)
+                setProfile(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const states = { restaurants, restaurantDetail, cardapio, buttonAdd, address, profile };
+    const setters = { setRestaurants, setRestaurantDetail, setCardapio, setButtonAdd, setAddress, setProfile, seteditAddress };
+    const requests = { getRestaurants, getRestaurantDetail, getAllAddress, editAddress, getEditProfile };
     const values = { token, headers }
 
     return (
