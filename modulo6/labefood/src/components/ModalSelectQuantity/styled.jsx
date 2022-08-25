@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const BoxModal = styled.div`
 
 background-color: #ffffff;
-display:flex:
+display:flex;
 flex-direction: column;
 padding: 2rem 1rem 0 1 rem;
 margin: 60% 1rem 50% 1 rem;
@@ -34,7 +34,7 @@ text-align: right;
 color: #4f81a8;
 background-color: transparent;
 border:0;
-outline:0,
+outline:0;
 cursor:pointer;
 text-transform:uppercase;
 align-self: flex-end;

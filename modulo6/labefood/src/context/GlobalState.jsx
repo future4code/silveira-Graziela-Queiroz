@@ -10,6 +10,9 @@ const GlobalState = (props) => {
     const [buttonAdd, setButtonAdd] = useState(false)// criando para o button
     const [address, setAddress] = useState({}); //Criando o estado para Editar o Endereço recebe um objeto 
     const [profile, setProfile] = useState({}); // Pegando o perfil já existente, para  poder.
+    const [cart, setCart] = useState([]);
+    const [order, setOrder] = useState([]);
+    const [history, setHistory] = useState([])
 
     const token = window.localStorage.getItem("token");
     const headers = {
@@ -65,7 +68,7 @@ const GlobalState = (props) => {
             })
     }
 
-    const getEditProfile = () => {
+    const getEditProfile = () => { // falta adicionar dentro de setters getEditProfile
         axios
             .get(`${BASE_URL}/profile`, headers)
             .then((res) => {
@@ -77,10 +80,48 @@ const GlobalState = (props) => {
             })
     }
 
-    const states = { restaurants, restaurantDetail, cardapio, buttonAdd, address, profile };
-    const setters = { setRestaurants, setRestaurantDetail, setCardapio, setButtonAdd, setAddress, setProfile, seteditAddress };
-    const requests = { getRestaurants, getRestaurantDetail, getAllAddress, editAddress, getEditProfile };
+    const placeOrder = () => { 
+        axios
+            .get(`${BASE_URL}/restaurants/${id}`, headers)
+            .then((res) => {
+                console.log(res)
+                setCart(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const activeOrder = () => { // falta adicionar dentro de setters getEditProfile
+        axios
+            .get(`${BASE_URL}/profile`, headers)
+            .then((res) => {
+                console.log(res)
+                setOrder(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const orderHistory = () => { // falta adicionar dentro de setters getEditProfile
+        axios
+            .get(`${BASE_URL}/profile`, headers)
+            .then((res) => {
+                console.log(res)
+                setOrderHistory(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+
+    const states = { restaurants, restaurantDetail, cardapio, buttonAdd, address, profile, cart, order, history };
+    const setters = { setRestaurants, setRestaurantDetail, setCardapio, setButtonAdd, setAddress, setProfile, setCart,setOrder, setHistory };
+    const requests = { getRestaurants, getRestaurantDetail, getAllAddress, editAddress, getEditProfile, placeOrder, activeOrder, orderHistory };
     const values = { token, headers }
+
 
     return (
         <GlobalStateContext.Provider value={{ states, setters, requests, values }}>
