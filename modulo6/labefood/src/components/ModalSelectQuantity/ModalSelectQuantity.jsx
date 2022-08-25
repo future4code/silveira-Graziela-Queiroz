@@ -47,8 +47,8 @@
 
 
 // export default Modal;
-import { Modal } from '@mui/material';
 import React from 'react';
+import { Modal } from '@mui/material';
 import { BoxModal, ButtonAddCart, SelectQuantity, TitleModal } from './styled';
 
 
