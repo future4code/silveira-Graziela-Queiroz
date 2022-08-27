@@ -2,6 +2,7 @@ import { Button, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../constants/url";
 import GlobalStateContext from "../../context/GlobalStateContext";
 import useForm from "../../hooks/useForm";
 import { goToProfile } from "../../routes/Coordinator";
@@ -12,21 +13,40 @@ function EditProfile() {
     const { states, requests } = useContext(GlobalStateContext)
     const navigate = useNavigate();
 
+    const token = window.localStorage.getItem("token");
+    const headers = {
+        headers: {
+            auth: token,
+        },
+    };
 
-    const { form, inputChange, clear } = useForm({
+    const { form, inputChange, clear, setForm } = useForm({
         name: "",
         email: "",
-        cpf: ""
+        cpf: "",
     });
 
+    const getProfile = () => {
+        axios
+          .get(`${BASE_URL}/profile`, headers)
+          .then((res) => {
+            console.log(res);
+            setForm({ name: res.data.user.name, email: res.data.user.email, cpf: res.data.user.cpf });
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+      };
+
     useEffect(() => {
-        requests.getEditProfile(form)
-    })
+        getProfile();
+        requests.upDateProfile();
+    },[]);
 
 
     const onSubmitEditProfile = (event) => {
         event.preventDefault();
-        requests.editProfile(form);
+        requests.upDateProfile();
         clear();
         goToProfile();
 
@@ -34,21 +54,20 @@ function EditProfile() {
 
     return (
         <ScreenContainer>
-            <Typography >
+            <Typography variant="h6" sx={{ color: "black"}}>
                 Editar Perfil
             </Typography>
             <InputsContainer>
                 <form onSubmit={onSubmitEditProfile}>
                     <TextField
-                        placeholder="Nome"
                         name="name"
-                        value={form.name}
+                        value={form.name} // retornando na tela para edição
                         onChange={inputChange}
                         variant={"outlined"}
+                        color={"primary"}
                         fullWidth
-                        margin={"dense"}
-                        type="text"
-                        label={"Nome e Sobrenome"}
+                        margin={"normal"}
+                     
                     />
                     <TextField
                         placeholder="email@email.com"
@@ -56,22 +75,22 @@ function EditProfile() {
                         value={form.email}
                         onChange={inputChange}
                         variant={"outlined"}
+                        color={"primary"}
                         fullWidth
-                        margin={"dense"}
-                        type="text"
-                        label={"E-mail"}
+                        margin={"normal"}
+                       
 
                     />
                     <TextField
-                        placeholder="000.000.000-00"
+
                         name="cpf"
                         value={form.cpf}
                         onChange={inputChange}
+                         type="text"
                         variant={"outlined"}
+                        color={"primary"}
                         fullWidth
-                        margin={"dense"}
-                        type="text"
-                        label={"CPF"}
+                        margin={"normal"}
                         pattern={
                             "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})"
                         }

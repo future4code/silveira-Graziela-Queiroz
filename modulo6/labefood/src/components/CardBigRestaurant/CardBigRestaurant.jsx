@@ -7,10 +7,7 @@ import { CardP, P, Img, CardBigStyle, Price, Services, RestaurantD, ContainerBut
 
 const CardBigRestaurant = (props) => {
   const [modal, setModal] = useState(false);// mostra o modal ou não, sendo booleano.
-  
-  const { states, setters, requests } = useContext(GlobalStateContext);
-
-
+    
   return (
     <CardBigStyle >
       <Img src={props.photoUrl} alt="logo" />
@@ -23,15 +20,14 @@ const CardBigRestaurant = (props) => {
         </Services>
         <Price>
           <P>Preco: R$ {props.price}</P>
-          <ButtonAdd onClick={() => setModal(true)}>
+          <ButtonAdd onClick={() => setModal(true) }>
             Adicionar
           </ButtonAdd>
-
         </Price>
-        // chamei o modal aqui
-        <ModalSelectQuantity open={modal} setOpen={setModal} />
-      </CardP>
 
+        <ModalSelectQuantity open={modal} setOpen={setModal} />
+
+      </CardP>
     </CardBigStyle>
   );
 };

@@ -62,6 +62,7 @@ export default function Profile() {
                     <h4>Você não realizou nenhum pedido</h4>
                 </HistoryContainer>
             </Typography>
+         
         </ScreenContainer>
     )
 

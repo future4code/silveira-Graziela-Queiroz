@@ -1,11 +1,12 @@
-import { TextField, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
+import { TextField, Typography } from "@mui/material";
 import { ContainerCategory, ContainerImg, ContainerRestaurant, Img, InputsContainer, Line, ScreenContainer } from "./styled";
 import { useNavigate } from "react-router-dom";
 import GlobalStateContext from "../../context/GlobalStateContext";
 import CardCategory from "../../components/CardCategory/CardCategory";
 import CardRestaurant from "../../components/CardRestaurant/CardRestaurant";
 import { goToDetailRestaurant, goToLogin } from "../../routes/Coordinator";
+import Footerr from "../../components/footer/Footerr";
 
 const Restaurant = () => {
     const navigate = useNavigate();
@@ -78,7 +79,7 @@ const Restaurant = () => {
             </InputsContainer>
             <ContainerCategory>{mapCategory}</ContainerCategory>
             <div>{mapRestaurant}</div>
-            {/* <Footer/> */}
+            <Footerr/> 
         </ScreenContainer>
     )
 }

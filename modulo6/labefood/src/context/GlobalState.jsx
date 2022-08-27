@@ -10,9 +10,11 @@ const GlobalState = (props) => {
     const [buttonAdd, setButtonAdd] = useState(false)// criando para o button
     const [address, setAddress] = useState({}); //Criando o estado para Editar o Endereço recebe um objeto 
     const [profile, setProfile] = useState({}); // Pegando o perfil já existente, para  poder.
+
     const [cart, setCart] = useState([]);
     const [order, setOrder] = useState([]);
-    const [history, setHistory] = useState([])
+    const [history, setHistory] = useState([]);
+    const [quantity, setQuantity] = useState([]);
 
     const token = window.localStorage.getItem("token");
     const headers = {
@@ -80,9 +82,9 @@ const GlobalState = (props) => {
             })
     }
 
-    const placeOrder = () => { 
+    const placeOrder = (restaurantId, body) => { 
         axios
-            .get(`${BASE_URL}/restaurants/${id}`, headers)
+            .post(`${BASE_URL}/restaurants/${restaurantId}/order`, body, headers)
             .then((res) => {
                 console.log(res)
                 setCart(res.data)
@@ -109,7 +111,7 @@ const GlobalState = (props) => {
             .get(`${BASE_URL}/profile`, headers)
             .then((res) => {
                 console.log(res)
-                setOrderHistory(res.data)
+                setHistory(res.data)
             })
             .catch((err) => {
                 console.log(err)
