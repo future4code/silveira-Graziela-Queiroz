@@ -7,7 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 
 
 export default function Profile() {
-
+    useProtectedPage()
     const { states, requests } = useContext
         (GlobalStateContext);
     const navigate = useNavigate();

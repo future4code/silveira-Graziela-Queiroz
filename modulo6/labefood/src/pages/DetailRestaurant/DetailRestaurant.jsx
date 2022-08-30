@@ -7,24 +7,27 @@ import { ScreenContainer } from "../Restaurant/styled";
 import { ContainerCardDetail } from "./styled";
 
 const DetailRestaurant = () => {
-    const { states, setters, values, requests } = useContext(GlobalStateContext)
+    const { states, requests } = useContext(GlobalStateContext)
 
     const params = useParams();
 
     useEffect(() => {
         requests.getRestaurantDetail(params.id);
-    }, []);
+    }, []);    
 
      //RETORNANDO O CARD DO INÍCIO NA PAGE DETAIL 
-    const mapDetailRestaurant = states.cardapio?.map((rest) => {
+    const mapDetailRestaurant = states.cardapio?.map((product) => {
         return (
-            <CardBigRestaurant
-                key={rest.id}
-                photoUrl={rest.photoUrl}
-                name={rest.name}
-                description={rest.description}
-                price={rest.price}
-            />
+            // <CardBigRestaurant
+            //     key={rest.id}
+            //     photoUrl={rest.photoUrl}
+            //     name={rest.name}
+            //     description={rest.description}
+            //     price={rest.price}
+            // />
+
+            <CardBigRestaurant product={product} key={product.id} restaurant={states.restaurantDetail}></CardBigRestaurant>
+
         )
     })
     

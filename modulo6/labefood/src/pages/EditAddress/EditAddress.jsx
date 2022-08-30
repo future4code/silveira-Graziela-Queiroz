@@ -1,36 +1,67 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import GlobalStateContext from "../../context/GlobalStateContext";
 import { InputsContainer, ScreenContainer } from "./styled";
 import useForm from "../../hooks/useForm";
-import { goToRestaurant } from "../../routes/Coordinator";
+import { goToProfile, goToRestaurant } from "../../routes/Coordinator";
+import axios from "axios";
+import { BASE_URL } from "../../constants/url";
+import useProtectedPage from "../../hooks/useProtectedPage"
 
 const EditAddress = () => {
-    const { states, requests } = useContext(GlobalStateContext)
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        localStorage.getItem('token') !== null ? requests.getAllAddress() : goToRestaurant(navigate)
-    }, []);
+    useProtectedPage()
+    const { requests } = useContext(GlobalStateContext)
+    const navigate = useNavigate();    
+
+    const token = window.localStorage.getItem("token");
+    const headers = {
+        headers: {
+            auth: token,
+        },
+    };
 
     const { form, inputChange, clear, setForm  } = useForm({
-        neighbourhood: states.address.neighbourhood,
-        number: states.address.number,
-        city: states.address.city,
-        apartament: states.address.complement,
-        state: states.address.state,
-        street: states.address.street,
+        neighbourhood: "",
+        number: "",
+        city: "",
+        complement:"" ,
+        state: "",
+        street: "",
     });
+    
+    const getAllAddress = () => {
+        axios
+          .get(`${BASE_URL}/profile/address`, headers)
+          .then((res) => {
+            // console.log(res.data);
+            setForm({ 
+                neighbourhood: res.data.address.neighbourhood, 
+                number: res.data.address.number, 
+                city: res.data.address.city, 
+                complement: res.data.address.complement, 
+                state: res.data.address.state, 
+                street: res.data.address.street
+            });
+          })
+          .catch((erro) => {
+            console.log(erro.response);
+          });
+    };
 
+    useEffect(() => {
+        getAllAddress();
+        
+    },[]);
 
-    console.log("AJUDA DEUS", form)
     const onSubmitEditAddress = (event) => {
         event.preventDefault();
         requests.editAddress(form);
         clear();
-        // navegação para a pagina de profile page.
+        goToProfile();
     };
+
  //*********** */
   // NO USE EFFECT , FALTA ATUALIZAR E TRAZER AS INFORMAÇÕES QUE JÁ ESTÁO CADASTRADA NO EDITAR  E FAZER AS ALTERAÇÕES
  // ******************
@@ -46,7 +77,7 @@ const EditAddress = () => {
                         name="street"
                         value={form.street}
                         onChange={inputChange}
-                        placeholder={"Logradouro"}
+                        placeholder="Rua / Av."
                         variant={"outlined"}
                         fullWidth
                         margin={"dense"}
@@ -56,7 +87,7 @@ const EditAddress = () => {
                         name="number"
                         value={form.number}
                         onChange={inputChange}
-                        placeholder={"Numero"}
+                        placeholder="Número"
                         variant={"outlined"}
                         color={"primary"}
                         fullWidth
@@ -67,7 +98,7 @@ const EditAddress = () => {
                         name="complement"
                         value={form.complement}
                         onChange={inputChange}
-                        placeholder={"Complemento"}
+                        placeholder="Complemento"
                         variant={"outlined"}
                         color={"primary"}
                         fullWidth
@@ -78,7 +109,7 @@ const EditAddress = () => {
                         name="neighbourhood"
                         value={form.neighbourhood}
                         onChange={inputChange}
-                        placeholder={"Bairro"}
+                        placeholder="Bairro"
                         variant={"outlined"}
                         color={"primary"}
                         fullWidth
@@ -89,7 +120,7 @@ const EditAddress = () => {
                         name="city"
                         value={form.city}
                         onChange={inputChange}
-                        placeholder={"Cidade"}
+                        placeholder="Cidade"
                         variant={"outlined"}
                         color={"primary"}
                         fullWidth
@@ -100,7 +131,7 @@ const EditAddress = () => {
                         name="state"
                         value={form.state}
                         onChange={inputChange}
-                        placeholder={"Estado"}
+                        placeholder="Estado"
                         variant={"outlined"}
                         color={"primary"}
                         fullWidth

@@ -7,6 +7,7 @@ import CardCategory from "../../components/CardCategory/CardCategory";
 import CardRestaurant from "../../components/CardRestaurant/CardRestaurant";
 import { goToDetailRestaurant, goToLogin } from "../../routes/Coordinator";
 import Footerr from "../../components/footer/Footerr";
+import Header from "../../components/Header/Header";
 
 const Restaurant = () => {
     const navigate = useNavigate();
@@ -15,6 +16,12 @@ const Restaurant = () => {
     const [filterfood, setFilterFood] = useState(false);
     const [category, setCategory] = useState(false);
     const [collor, setcollor] = useState('#FF9500')
+
+
+    const logout = () => {
+        localStorage.clear("token");
+        navigate('/')
+    }
 
     useEffect(() => {
         localStorage.getItem('token') !== null ? requests.getRestaurants() : goToLogin(navigate);
@@ -27,8 +34,11 @@ const Restaurant = () => {
     const mapCategory = states.restaurants?.map((cat) => {
         return (
             <CardCategory
-                onClick={() => { setCategory((state) => !state) }}
                 key={cat.id}
+                onClick={() => {
+                    // setCategory((state) => !state) 
+                    console.log("FOI CLICOU")
+                }}
                 category={cat.category}
             />
         )
@@ -42,27 +52,17 @@ const Restaurant = () => {
                 name={rest.name}
                 deliveryTime={rest.deliveryTime}
                 shipping={rest.shipping}
-                onClick={()=>goToDetailRestaurant(navigate, rest.id)}
+                onClick={() => goToDetailRestaurant(navigate, rest.id)}
             />
         )
     })
 
-    const logout = () => {
-        localStorage.clear("token");
-        navigate('/')
-    }
-
     return (
         <ScreenContainer>
-            <ContainerImg>
-                <img 
-                width="50px" 
-                src="https://raw.githubusercontent.com/future4code/Silveira-labe-food1/master/src/assets/iconelogout.png"
-                onClick={logout}
-                />
-            </ContainerImg>
-            <Typography>Rappi4</Typography>
-            <Line />
+            <Header
+                title={"Rappi4"}
+                padding={"15px"}
+            />
             <InputsContainer>
                 <TextField
                     variant='outlined'
@@ -72,14 +72,14 @@ const Restaurant = () => {
                     margin='normal'
                     label='Restaurante'
                     placeholder="Restaurante"
-                    // value={filterRestaurants}
-                    // onChange={(event) => setFilterRestaurants(event.target.value)}
-                    // sx={{ position: 'relative', bottom: '15px', width: '95vw' }}
+                // value={filterRestaurants}
+                // onChange={(event) => setFilterRestaurants(event.target.value)}
+                sx={{ position: 'relative', bottom: '15px', width: '95vw' }}
                 />
             </InputsContainer>
             <ContainerCategory>{mapCategory}</ContainerCategory>
             <div>{mapRestaurant}</div>
-            <Footerr/> 
+            <Footerr />
         </ScreenContainer>
     )
 }

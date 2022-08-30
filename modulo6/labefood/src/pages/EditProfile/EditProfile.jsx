@@ -1,6 +1,6 @@
+import React, { useContext, useEffect } from "react";
 import { Button, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../constants/url";
 import GlobalStateContext from "../../context/GlobalStateContext";
@@ -9,8 +9,8 @@ import { goToProfile } from "../../routes/Coordinator";
 import { InputsContainer, ScreenContainer } from "./styled";
 
 function EditProfile() {
-
-    const { states, requests } = useContext(GlobalStateContext)
+    // useProtectedPage()
+    const { requests } = useContext(GlobalStateContext)
     const navigate = useNavigate();
 
     const token = window.localStorage.getItem("token");
@@ -28,33 +28,36 @@ function EditProfile() {
 
     const getProfile = () => {
         axios
-          .get(`${BASE_URL}/profile`, headers)
-          .then((res) => {
-            console.log(res);
-            setForm({ name: res.data.user.name, email: res.data.user.email, cpf: res.data.user.cpf });
-          })
-          .catch((err) => {
-            console.log(err.response);
-          });
-      };
+            .get(`${BASE_URL}/profile`, headers)
+            .then((res) => {
+                console.log(res);
+                setForm({
+                    name: res.data.user.name,
+                    email: res.data.user.email,
+                    cpf: res.data.user.cpf
+                });
+            })
+            .catch((err) => {
+                console.log(err.response);
+            });
+    };
 
     useEffect(() => {
         getProfile();
-        requests.upDateProfile();
-    },[]);
+        // requests.upDateProfile();
+    }, []);
 
 
     const onSubmitEditProfile = (event) => {
         event.preventDefault();
-        requests.upDateProfile();
+        requests.upDateProfile(form);
         clear();
         goToProfile();
-
     };
 
     return (
         <ScreenContainer>
-            <Typography variant="h6" sx={{ color: "black"}}>
+            <Typography variant="h6" sx={{ color: "black" }}>
                 Editar Perfil
             </Typography>
             <InputsContainer>
@@ -67,10 +70,8 @@ function EditProfile() {
                         color={"primary"}
                         fullWidth
                         margin={"normal"}
-                     
                     />
                     <TextField
-                        placeholder="email@email.com"
                         name="email"
                         value={form.email}
                         onChange={inputChange}
@@ -78,15 +79,12 @@ function EditProfile() {
                         color={"primary"}
                         fullWidth
                         margin={"normal"}
-                       
-
                     />
                     <TextField
-
                         name="cpf"
                         value={form.cpf}
                         onChange={inputChange}
-                         type="text"
+                        type="text"
                         variant={"outlined"}
                         color={"primary"}
                         fullWidth

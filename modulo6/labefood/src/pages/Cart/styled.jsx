@@ -18,17 +18,17 @@ export const BoxAddress = styled.div`
   padding: 10px 0 0 30px;
 `;
 
-export const BoxRestaurante = styled.div`
-  width: 100%;
-  height: 15vh;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
- color: #e86e5a;
-  margin-bottom: 20px;
-  font-size: 15px;
-  padding: 10px 0 0 30px;
-`;
+// export const BoxRestaurante = styled.div`
+//   width: 100%;
+//   height: 15vh;
+//   align-items: center;
+//   display: flex;
+//   flex-direction: column;
+//  color: #e86e5a;
+//   margin-bottom: 20px;
+//   font-size: 15px;
+//   padding: 10px 0 0 30px;
+// `;
 export const Frete = styled.div`
 font-weight: bold;
 text-align: right;
@@ -43,11 +43,11 @@ margin-right: 10px;
 margin-left: 10px;
 `
 
-export const SubValor = styled.div`
-color:#E86E5A;
-padding: 5px;
-font-weight: bold;
-`
+// export const SubValor = styled.div`
+// color:#E86E5A;
+// padding: 5px;
+// font-weight: bold;
+// `
 
 export const Pay = styled.h4`
   font-size: 20px;

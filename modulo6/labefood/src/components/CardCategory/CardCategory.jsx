@@ -3,11 +3,8 @@ import { CardStyleCategory } from "./styled";
 
 
 const CardCategory = (props) => {
-
-    // const onClick = 
-   
     return(
-        <CardStyleCategory>
+        <CardStyleCategory onClick={props.onClick}>
             <p>{props.category}</p>
         </CardStyleCategory>
     );

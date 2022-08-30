@@ -111,7 +111,6 @@ const Address = () => {
                         color={"primary"}
                         fullWidth
                         margin={"dense"}
-                        required
                         type={"text"}
                     />
                     <TextField

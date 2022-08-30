@@ -7,6 +7,7 @@ import useForm from "../../hooks/useForm";
 import { goToAddress } from "../../routes/Coordinator";
 import { BASE_URL } from "../../constants/url";
 import Rappi4 from '../../assets/Rappi4.png'
+import Header from "../../components/Header/Header";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ const Signup = () => {
 
   return (
     <ScreenContainer>
+      <Header/>
       <Logo src={Rappi4} width={"150px"} />
       <Typography sx={{ color: 'black', marginTop: 15, fontWeight: 'bold' }}>Cadastrar</Typography>
       <InputsContainer>

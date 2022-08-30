@@ -27,7 +27,10 @@ export const goToProfile = (navigate) => {
     navigate("/profile");
 }
 
-export const goToCart = (navigate) => {
+export const 
+
+
+goToCart = (navigate) => {
     navigate("/cart");
 }
 

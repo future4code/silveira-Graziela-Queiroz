@@ -14,10 +14,7 @@ export const InputsContainer = styled.div`
   align-items: center;
 `
 
-export const Line = styled.hr`
-  width: 100%;
-  border: 1px solid black;
-`
+
 
 export const ContainerCategory = styled.div`
   display: flex;
@@ -34,13 +31,5 @@ export const ContainerCategory = styled.div`
   color: whitesmoke;
 `
 
-export const ContainerImg = styled.div`
-  margin: 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  width: 90vw;
-  height: 5vh;
-`
+
  
