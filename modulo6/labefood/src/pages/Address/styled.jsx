@@ -5,7 +5,7 @@ export const ScreenContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+ 
 `;
 
 export const InputsContainer = styled.div`

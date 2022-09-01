@@ -1,13 +1,12 @@
+import React from 'react';
 import { Button, TextField, Typography } from '@mui/material';
-import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import GlobalStateContext from '../../context/GlobalStateContext';
 import useForm from '../../hooks/useForm';
 import { goToRestaurant } from '../../routes/Coordinator';
 import { InputsContainer, ScreenContainer } from './styled';
-import { addAdress } from "../../context/GlobalState"
 import axios from 'axios';
 import { BASE_URL } from '../../constants/url';
+import Header from '../../components/Header/Header';
 
 const Address = () => {
     const token = window.localStorage.getItem("token");
@@ -15,7 +14,7 @@ const Address = () => {
     const navigate = useNavigate();
 
     const { form, InputChange, clear } = useForm({
-        street: "",
+        "street": "",
         number: "",
         neighbourhood: "",
         city: "",
@@ -38,38 +37,17 @@ const Address = () => {
             .catch((err) => {
                 console.log(err)
                 alert("Erro ao  cadastrar endereço!")
-
             })
     };
-
-    // const getAddress = async (setForm) => {
-    //         await axios
-    //             .get(`${BASE_URL}/profile/address`, header)
-    //             .then((res) => {
-
-    //                 setAddress(res.data);
-    //                 setForm({
-    //                     neighbourhood: res.data.address.neighbourhood,
-    //                     number: res.data.adress.number,
-    //                     city: res.data.address.number,
-    //                     apartament: res.data.address.apartament,
-    //                     state: res.data.address.state,
-    //                     street: res.data.address.street,
-    //                 })
-    //             })
-    //             .catch((err) => {
-    //                 alert("Crie seu cadastro!!")
-    //             });
-    // }
 
     const onSubmitAddress = (event) => {
         event.preventDefault();
         putAddress(form);
-
     };
 
     return (
         <ScreenContainer>
+            <Header back={true} />
             <Typography sx={{ color: "black", fontWeight: "bold" }}>
                 Endereço
             </Typography>
@@ -153,13 +131,8 @@ const Address = () => {
                         type={"text"}
                     />
                     <Button type="submit" variant='contained' fullWidth color={"primary"} sx={{ marginTop: 10 }}>Salvar Endereço</Button>
-
                 </form>
             </InputsContainer>
-
-
-
-
         </ScreenContainer>
     );
 

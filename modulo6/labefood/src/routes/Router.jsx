@@ -11,6 +11,7 @@ import EditProfile from "../pages/EditProfile/EditProfile";
 import Error from "../pages/Error/Error";
 import Cart from "../pages/Cart/Cart";
 
+
 const Router = () => {
     return (
         <div>

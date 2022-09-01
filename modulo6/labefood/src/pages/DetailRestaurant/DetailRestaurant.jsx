@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CardBigRestaurant from "../../components/CardBigRestaurant/CardBigRestaurant";
 import CardResultRestaurant from "../../components/CardResultRestaurant/CardResult Restaurant";
+import Header from "../../components/Header/Header";
 import GlobalStateContext from "../../context/GlobalStateContext";
 import { ScreenContainer } from "../Restaurant/styled";
 import { ContainerCardDetail } from "./styled";
@@ -13,9 +14,9 @@ const DetailRestaurant = () => {
 
     useEffect(() => {
         requests.getRestaurantDetail(params.id);
-    }, []);    
+    }, []);
 
-     //RETORNANDO O CARD DO INÍCIO NA PAGE DETAIL 
+    //RETORNANDO O CARD DO INÍCIO NA PAGE DETAIL 
     const mapDetailRestaurant = states.cardapio?.map((product) => {
         return (
             // <CardBigRestaurant
@@ -30,9 +31,10 @@ const DetailRestaurant = () => {
 
         )
     })
-    
+
     return (
-        <ScreenContainer> 
+        <ScreenContainer>
+            <Header back={true} />
             <ContainerCardDetail>
                 <CardResultRestaurant
                     key={states.restaurantDetail.id}
@@ -42,10 +44,10 @@ const DetailRestaurant = () => {
                     deliveryTime={states.restaurantDetail.deliveryTime}
                     shipping={states.restaurantDetail.shipping}
                     address={states.restaurantDetail.address}
-            />
+                />
             </ContainerCardDetail>
             <div>{mapDetailRestaurant}</div>
         </ScreenContainer>
-   )
+    )
 }
 export default DetailRestaurant;

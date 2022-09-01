@@ -7,6 +7,7 @@ import GlobalStateContext from "../../context/GlobalStateContext";
 import useForm from "../../hooks/useForm";
 import { goToProfile } from "../../routes/Coordinator";
 import { InputsContainer, ScreenContainer } from "./styled";
+import Header from "../../components/Header/Header";
 
 function EditProfile() {
     // useProtectedPage()
@@ -52,11 +53,12 @@ function EditProfile() {
         event.preventDefault();
         requests.upDateProfile(form);
         clear();
-        goToProfile();
+        goToProfile(navigate);
     };
 
     return (
         <ScreenContainer>
+              <Header back= {true}/>
             <Typography variant="h6" sx={{ color: "black" }}>
                 Editar Perfil
             </Typography>

@@ -3,17 +3,18 @@ import { Button, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import GlobalStateContext from "../../context/GlobalStateContext";
 import { InputsContainer, ScreenContainer } from "./styled";
-import useForm from "../../hooks/useForm";
 import { goToProfile, goToRestaurant } from "../../routes/Coordinator";
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
 import useProtectedPage from "../../hooks/useProtectedPage"
+import Header from "../../components/Header/Header";
+import useForm from "../../hooks/useForm";
 
 const EditAddress = () => {
 
     useProtectedPage()
     const { requests } = useContext(GlobalStateContext)
-    const navigate = useNavigate();    
+    const navigate = useNavigate();
 
     const token = window.localStorage.getItem("token");
     const headers = {
@@ -22,52 +23,48 @@ const EditAddress = () => {
         },
     };
 
-    const { form, inputChange, clear, setForm  } = useForm({
+    const { form, inputChange, clear, setForm } = useForm({
         neighbourhood: "",
         number: "",
         city: "",
-        complement:"" ,
+        complement: "",
         state: "",
         street: "",
     });
-    
+
     const getAllAddress = () => {
         axios
-          .get(`${BASE_URL}/profile/address`, headers)
-          .then((res) => {
-            // console.log(res.data);
-            setForm({ 
-                neighbourhood: res.data.address.neighbourhood, 
-                number: res.data.address.number, 
-                city: res.data.address.city, 
-                complement: res.data.address.complement, 
-                state: res.data.address.state, 
-                street: res.data.address.street
+            .get(`${BASE_URL}/profile/address`, headers)
+            .then((res) => {
+                setForm({
+                    neighbourhood: res.data.address.neighbourhood,
+                    number: res.data.address.number,
+                    city: res.data.address.city,
+                    complement: res.data.address.complement,
+                    state: res.data.address.state,
+                    street: res.data.address.street
+                });
+            })
+            .catch((erro) => {
+                console.log(erro.response);
             });
-          })
-          .catch((erro) => {
-            console.log(erro.response);
-          });
     };
 
-    useEffect(() => {
-        getAllAddress();
-        
-    },[]);
-
+    
     const onSubmitEditAddress = (event) => {
         event.preventDefault();
         requests.editAddress(form);
+        goToProfile(navigate);
         clear();
-        goToProfile();
     };
+    
+    useEffect(() => {
+        getAllAddress();
+    }, []);
 
- //*********** */
-  // NO USE EFFECT , FALTA ATUALIZAR E TRAZER AS INFORMAÇÕES QUE JÁ ESTÁO CADASTRADA NO EDITAR  E FAZER AS ALTERAÇÕES
- // ******************
-    //Dentro do submit precisa passar rota para navegar e função que seta o estado
     return (
         <ScreenContainer>
+            <Header back={true} />
             <Typography variant="h6" sx={{ color: "black" }}>
                 Editar meu endereço:
             </Typography>

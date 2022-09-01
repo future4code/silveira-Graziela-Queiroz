@@ -44,7 +44,7 @@ const Signup = () => {
 
   return (
     <ScreenContainer>
-      <Header/>
+      <Header back= {true}/>
       <Logo src={Rappi4} width={"150px"} />
       <Typography sx={{ color: 'black', marginTop: 15, fontWeight: 'bold' }}>Cadastrar</Typography>
       <InputsContainer>

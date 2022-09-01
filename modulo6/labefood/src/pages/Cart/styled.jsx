@@ -4,19 +4,26 @@ export const ScreenContainer = styled.div`
   width: auto; 
   display: flex;
   flex-direction: column;
-  align-items: center;
-`;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+`
+
 export const BoxAddress = styled.div`
   width: 100%;
-  height: 15vh;
-  align-items: center;
   display: flex;
   flex-direction: column;
   background-color: #efeff4;
-  margin-bottom: 20px;
-  font-size: 15px;
-  padding: 10px 0 0 30px;
-`;
+`
+export const DivAdrress = styled.div`
+  margin: 0 20px 0 20px;
+`
+export const BoxAddressRestaurant = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`
+
 
 // export const BoxRestaurante = styled.div`
 //   width: 100%;
